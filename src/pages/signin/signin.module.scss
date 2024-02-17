@@ -5,4 +5,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  .form {
+    .label {
+      font-size: 18px;
+      margin-bottom: 6px;
+    }
+  }
 }
