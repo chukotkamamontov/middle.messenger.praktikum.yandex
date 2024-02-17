@@ -2,6 +2,7 @@ import renderHomePage from "./pages/home";
 import renderErrorPage from "./pages/error";
 import renderSigninPage from "./pages/signin";
 import renderSignupPage from "./pages/signup";
+import renderSettingsPage from './pages/settings'
 import renderLayout from "./layout/default";
 
 const root = document.querySelector("#app");
@@ -17,6 +18,9 @@ switch (pathname) {
     break;
   case "/signup":
     root.innerHTML = renderLayout(renderSignupPage());
+    break;
+  case "/settings":
+    root.innerHTML = renderLayout(renderSettingsPage());
     break;
   default:
     root.innerHTML = renderLayout(renderErrorPage({ code: 404 }));
