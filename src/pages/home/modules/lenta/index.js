@@ -1,9 +1,11 @@
 import styles from "./lenta.module.scss";
 import tml from "./lenta.hbs";
+import message from "../message";
 
 export default function (ctx = {}, route) {
   const baseCtx = {
     data: "LENTA",
+    message: message(),
     styles,
   };
 

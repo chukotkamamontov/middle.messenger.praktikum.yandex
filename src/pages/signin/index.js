@@ -1,6 +1,5 @@
 import styles from "./signin.module.scss";
 import tml from "./signin.hbs";
-import title from "../../components/title";
 import form from "../../components/form";
 import input from "../../components/input";
 import button from "../../components/button";
@@ -29,7 +28,7 @@ export default function (ctx = {}, route) {
         })
       ],
       submit: button({
-        title: "Sign In",
+        name: "Sign In",
         type: "submit"
       })
     }),
