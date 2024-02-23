@@ -2,12 +2,13 @@ import styles from "./settings.module.scss";
 import tml from "./settings.hbs";
 import form from "../../components/form";
 import input from "../../components/input";
+import fileInput from "../../components/fileInput"
 import button from "../../components/button";
 
 export default function (ctx = {}, route) {
   const baseCtx = {
-    data: "SIGN UP PAGE",
-    title: "Sign Up",
+    data: "Settings",
+    title: "Settings",
     form: form({
       inputs: [
        input({
@@ -40,10 +41,10 @@ export default function (ctx = {}, route) {
         outlined: true,
        }),
        input({
-        name: "password",
-        id: "password",
-        helper: "This password is too easy",
-        label: "Password",
+        name: "phone",
+        id: "phone",
+        helper: "This phone already exists",
+        label: "Phone",
         outlined: true,
        }),
        input({
@@ -51,6 +52,27 @@ export default function (ctx = {}, route) {
         id: "phone",
         helper: "This phone already exists",
         label: "Phone",
+        outlined: true,
+       }),
+       fileInput({
+        name: "avatar",
+        id: "avatar",
+        helper: "File must be jpg, png or webp format",
+        label: "Avatar",
+        outlined: true,
+       }),
+       input({
+        name: "oldPassword",
+        id: "oldPassword",
+        helper: "This password is too easy",
+        label: "Old password",
+        outlined: true,
+       }),
+       input({
+        name: "newPassword",
+        id: "newPassword",
+        helper: "This password is too easy",
+        label: "New password",
         outlined: true,
        }),
       ],

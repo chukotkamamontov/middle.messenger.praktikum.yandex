@@ -1,6 +1,8 @@
-import { resolve } from "path";
 import { defineConfig } from "vite";
 import handlebars from "./vite-plugin-handlebars-precompile";
+import {resolve} from 'path'
+
+
 
 export default defineConfig({
   root: resolve(__dirname, "src"),
@@ -11,4 +13,9 @@ export default defineConfig({
     outDir: resolve(__dirname, "dist"),
   },
   plugins: [handlebars()],
+  resolve: {
+    alias: {
+      src: '/src'
+    }
+  }
 });
