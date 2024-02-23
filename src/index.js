@@ -1,9 +1,10 @@
+import renderLayout from "./layout/default";
 import renderHomePage from "./pages/home";
-import renderErrorPage from "./pages/error";
 import renderSigninPage from "./pages/signin";
 import renderSignupPage from "./pages/signup";
 import renderSettingsPage from './pages/settings'
-import renderLayout from "./layout/default";
+import renderNotFoundPage from "./pages/notFoundPage";
+import renderServerErrorPage from './pages/500'
 
 const root = document.querySelector("#app");
 
@@ -22,7 +23,10 @@ switch (pathname) {
   case "/settings":
     root.innerHTML = renderLayout(renderSettingsPage());
     break;
+  case "/500":
+    root.innerHTML = renderLayout(renderServerErrorPage({ code: 500 }));
+    break;
   default:
-    root.innerHTML = renderLayout(renderErrorPage({ code: 404 }));
+    root.innerHTML = renderLayout(renderNotFoundPage({ code: 404 }));
     break;
 }

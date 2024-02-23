@@ -1,8 +1,6 @@
-.container {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+.lenta {
   flex: 1;
   padding: 20px;
   background-color: rgb(139, 218, 139);
+  align-self: stretch;
 }

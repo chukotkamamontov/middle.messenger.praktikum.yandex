@@ -1,5 +1,5 @@
-import styles from "./error.module.scss";
-import tml from "./error.hbs";
+import styles from "./notFoundPage.module.scss";
+import tml from "./notFoundPage.hbs";
 
 export default function (ctx = {}, route) {
   const baseCtx = {
