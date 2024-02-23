@@ -1,15 +1,19 @@
 {
   "name": "middle.messenger.praktikum.yandex",
+  "description": "Messanger",
+  "default": "index.html",
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "author": "Kharitonov Sergey",
   "engines": {
     "node": ">=18.0.0"
   },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start": "npm run build && nodemon src/app.js"
   },
   "devDependencies": {
     "handlebars": "^4.7.8",
@@ -18,6 +22,7 @@
     "vite-plugin-handlebars": "^1.6.0"
   },
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "nodemon": "^3.1.0"
   }
 }

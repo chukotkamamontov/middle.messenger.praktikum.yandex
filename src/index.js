@@ -9,6 +9,10 @@ import renderServerErrorPage from './pages/500'
 const root = document.querySelector("#app");
 
 const { pathname } = window.location;
+
+console.log('[pathname]: ', pathname);
+
+
 switch (pathname) {
   case "/":
   case "/profile":
