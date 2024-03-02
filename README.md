@@ -1,4 +1,51 @@
-https://www.figma.com/file/Bhnnn3gtWTBCbcMqCXV070/like_yandex?type=design&node-id=0%3A1&mode=design&t=Xyo57CQIOdm5P1pw-1
+## О проекте
+```
+Учебный проект мессенджер, для повышения экспертизы в позиции фронтенд разработчика и улучшения экзестенциального бдения
+```
+
+## Макет
+```
+https://www.figma.com/file/Fp2QkeMw5vPa1ksFa75jbP/YA_PRAKTIKUM_MESSANGER?type=design&mode=design&t=oTSWZQVIixMa5DTj-1
+```
+
+## Команды
+
+- Установка зависимостей
+
+```
+npm ci
+```
+
+- Сборка и запуск проекта
+
+```
+npm run start
+```
+
+- Запуска проекта в режиме разработки
+
+```
+npm run dev
+```
+
+- Сборка проекта
+
+```
+npm run build
+```
+
+- Сборка и запуск проекта. Команда из шаблона Vite
+
+```
+npm run preview
+```
+
+
+
+- npm run dev
+    "build": "vite build",
+    "preview": "vite preview",
+    "start": "npm run build && node src/app.js"
 
 ### Ветка, в которой делаете задания спринта, должна называться sprint_i, где i - номер спринта. Не переименовывайте её.
 

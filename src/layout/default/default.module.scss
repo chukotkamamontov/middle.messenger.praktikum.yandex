@@ -2,10 +2,10 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  min-height: 100vh;
-  background-color: aquamarine;
+  height: 100%;
+  background-color: wheat;
   .header {
-    padding: 20px;
+    height: 70px;
     display: flex;
     align-items: center;
     background-color: black;
@@ -16,7 +16,8 @@
   }
   .content {
     background-color: yellow;
-    flex: 1 0 auto;
+    height: calc(100% - 70px);
+    align-self: stretch;
   }
   .footer {
     height: 40px;
