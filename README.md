@@ -8,6 +8,11 @@
 https://www.figma.com/file/Fp2QkeMw5vPa1ksFa75jbP/YA_PRAKTIKUM_MESSANGER?type=design&mode=design&t=oTSWZQVIixMa5DTj-1
 ```
 
+## Netlify
+```
+https://merry-begonia-2c8cb4.netlify.app
+```
+
 ## Команды
 
 - Установка зависимостей
