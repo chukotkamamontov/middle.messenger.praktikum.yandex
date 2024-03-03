@@ -4,7 +4,6 @@ export default function handlebars() {
   const fileRegexp = /\.hbs$|\.handlebars/;
 
   return {
-    // имя плагина
     name: 'vite-plugin-handlebars-precompile',
     transform(src, id) {
       if (!fileRegexp.test(id)) {

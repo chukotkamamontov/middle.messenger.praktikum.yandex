@@ -31,10 +31,6 @@ export default function (ctx = {}) {
         type: 'submit',
       }),
     }),
-    // link: link({
-    //   name: "Sign Up",
-    //   href: "signup"
-    // }),
     styles,
   };
 
