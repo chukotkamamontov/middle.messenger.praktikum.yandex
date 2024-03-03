@@ -22,6 +22,6 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
-      '@typescript-eslint/ban-ts-comment' : 'off'
+      '@typescript-eslint/ban-ts-comment' : 'error'
   },
 };
