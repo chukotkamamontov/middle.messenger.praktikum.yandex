@@ -1,8 +1,7 @@
-import styles from "./default.module.scss";
-import tml from "./default.hbs";
+import styles from './default.module.scss';
+import tml from './default.hbs';
 
 console.log('[document.location]: ', document.location);
-
 
 export default function (outlet) {
   const basetCtx = {
@@ -13,5 +12,3 @@ export default function (outlet) {
   };
   return tml({ ...basetCtx, outlet });
 }
-
-

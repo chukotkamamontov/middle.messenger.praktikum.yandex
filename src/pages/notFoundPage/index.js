@@ -1,7 +1,7 @@
-import styles from "./notFoundPage.module.scss";
-import tml from "./notFoundPage.hbs";
+import styles from './notFoundPage.module.scss';
+import tml from './notFoundPage.hbs';
 
-export default function (ctx = {}, route) {
+export default function (ctx = {}) {
   const baseCtx = {
     data: ctx.code,
     styles,
@@ -9,4 +9,3 @@ export default function (ctx = {}, route) {
 
   return tml({ ...baseCtx, ...ctx });
 }
-
