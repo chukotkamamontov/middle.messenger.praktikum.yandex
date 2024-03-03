@@ -6,17 +6,9 @@ import renderSettingsPage from './pages/settings';
 import renderNotFoundPage from './pages/notFoundPage';
 import renderServerErrorPage from './pages/500';
 
-const root = document.querySelector('#app');   
+const root = document.querySelector('#app');
 
 const { pathname } = window.location;
-
-console.log('[pathname]: ', pathname);
-
-
-
-
-
-const none = 'rii'
 
 switch (pathname) {
   case '/':
