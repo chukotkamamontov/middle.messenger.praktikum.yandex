@@ -48,10 +48,10 @@ export default function (ctx = {}) {
           outlined: true,
         }),
         input({
-          name: 'phone',
-          id: 'phone',
+          name: 'display_name',
+          id: 'display_name',
           helper: 'This phone already exists',
-          label: 'Phone',
+          label: 'Display name',
           outlined: true,
         }),
         fileInput({

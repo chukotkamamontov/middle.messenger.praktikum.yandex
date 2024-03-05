@@ -1,9 +1,11 @@
+@import '../../../../assets/styles/styles.css';
+
 .lenta {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   flex: 1;
   padding: 20px;
-  background-color: rgb(139, 218, 139);
+  background-color: var(--bg-lenta);
   align-self: stretch;
 }

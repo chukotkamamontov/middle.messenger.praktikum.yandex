@@ -1,16 +1,24 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  /* text */
+  --color-default: #ffffff;
+
+  /* background */
+  --bg-black: #000000;
+  --bg-default-page: coral; 
+  --bg-signin-page: rgb(123, 215, 208);
+  --bg-signup-page: rgb(155, 199, 82);
+  --bg-error-page: tomato;
+  --bg-left-panel: aqua;
+  --bg-lenta: rgb(139, 218, 139);;
+
+  font-family: monospace, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: #ffffff;
 }
 
 * {

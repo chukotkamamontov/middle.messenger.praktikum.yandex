@@ -10,7 +10,7 @@ export default function (ctx = {}) {
     form: form({
       inputs: [
         input({
-          name: 'Username',
+          name: 'username',
           id: 'username',
           helper: 'Help username',
           label: 'Username',
@@ -18,7 +18,7 @@ export default function (ctx = {}) {
           placeholder: 'Type your username...',
         }),
         input({
-          name: 'Password',
+          name: 'password',
           id: 'password',
           helper: 'Help password',
           label: 'Password',
