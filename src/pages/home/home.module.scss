@@ -1,5 +1,10 @@
+.nav {
+  display: flex;
+  justify-content: space-around;
+  list-style: none;
+  align-items: center;
+}
+
 .home {
   display: flex;
-  justify-content: space-between;
-  height: 100%;
 }
