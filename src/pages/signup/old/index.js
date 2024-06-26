@@ -1,8 +1,8 @@
 import styles from './signup.module.scss';
 import tml from './signup.hbs';
-import form from '../../components/form';
-import input from '../../components/input';
-import button from '../../components/button';
+import form from '../../../components/form';
+import input from '../../../components/input';
+import button from '../../../components/button';
 
 export default function (ctx = {}) {
   const baseCtx = {

@@ -1,9 +1,9 @@
 import styles from './settings.module.scss';
 import tml from './settings.hbs';
-import form from '../../components/form';
-import input from '../../components/input';
-import fileInput from '../../components/fileInput';
-import button from '../../components/button';
+import form from '../../../components/form';
+import input from '../../../components/input/old';
+import fileInput from '../../../components/fileInput';
+import button from '../../../components/button';
 
 export default function (ctx = {}) {
   const baseCtx = {

@@ -142,6 +142,7 @@ class Block<P extends Record<string, any> = any> {
   }
 
   protected compile(template: string) {
+    console.log('[template]: ', template)
     const contextAndStubs = { ...this.props } as Record<string, any>;
     
     // Создаем заглушки для всех children
@@ -163,7 +164,7 @@ class Block<P extends Record<string, any> = any> {
             this._replaceStubWithContent(fragment, component as Block);
         }
     }
-
+    // console.log('[fragment.content]: ', fragment.content)
     return fragment.content;
   } 
 

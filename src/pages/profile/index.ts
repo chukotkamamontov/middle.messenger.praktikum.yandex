@@ -1,8 +1,6 @@
 import { Link } from '../../components/link';
 import Block from '../../tools/Block';
-import { tmp } from './home.tmp';
-import { LeftPanel } from './modules/leftPanel';
-import { Lenta } from './modules/lenta';
+import { tmp } from './profile.tmp';
 
 const links = [
   {
@@ -31,19 +29,13 @@ const links = [
   },
 ];
 
-export class HomePage extends Block {
+export class Profile extends Block {
   constructor() {
     super('div', {});
   }
 
   init() {
     this.children.links = links.map((link) => new Link(link));
-    this.children.leftPanel = new LeftPanel({
-      data: 'LEFT PANEL WILL BE HERE',
-    });
-    this.children.lenta = new Lenta({
-      data: 'LENTA WILL BE HERE',
-    });
   }
 
   render() {
