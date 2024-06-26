@@ -142,7 +142,7 @@ class Block<P extends Record<string, any> = any> {
   }
 
   protected compile(template: string) {
-    console.log('[template]: ', template)
+    // console.log('[template]: ', template)
     const contextAndStubs = { ...this.props } as Record<string, any>;
     
     // Создаем заглушки для всех children

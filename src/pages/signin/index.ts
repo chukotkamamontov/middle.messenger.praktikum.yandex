@@ -19,75 +19,21 @@ export interface InputProps {
 const inputs: InputProps[] = [
   {
     type: 'text',
-    id: 'first_name',
+    id: 'username',
     outlined: true,
-    name: 'first_name',
+    name: 'username',
     // helper: 'This field is required',
-    label: 'First name',
+    label: 'Username',
+    placeholder: 'Type your username...',
   },
   {
     type: 'text',
-    name: 'second_name',
-    id: 'second_name',
+    name: 'password',
+    id: 'password',
     // helper: 'This field is required',
-    label: 'Second name',
+    label: 'Password',
     outlined: true,
-  },
-  {
-    type: 'text',
-    name: 'login',
-    id: 'login',
-    // helper: 'This field is required',
-    label: 'Login',
-    outlined: true,
-  },
-  {
-    type: 'text',
-    name: 'email',
-    id: 'email',
-    // helper: 'This field is required',
-    label: 'Email',
-    outlined: true,
-  },
-  {
-    type: 'text',
-    name: 'phone',
-    id: 'phone',
-    // helper: 'This field is required',
-    label: 'Phone',
-    outlined: true,
-  },
-  {
-    type: 'text',
-    name: 'display_name',
-    id: 'display_name',
-    // helper: 'This field is required',
-    label: 'Display name',
-    outlined: true,
-  },
-  {
-    type: 'file',
-    name: 'avatar',
-    id: 'avatar',
-    // helper: 'This field is required',
-    label: 'Avatar',
-    outlined: true,
-  },
-  {
-    type: 'text',
-    name: 'oldPassword',
-    id: 'oldPassword',
-    // helper: 'This field is required',
-    label: 'Old password',
-    outlined: true,
-  },
-  {
-    type: 'text',
-    name: 'newPassword',
-    id: 'newPassword',
-    // helper: 'This field is required',
-    label: 'New password',
-    outlined: true,
+    placeholder: 'Type your password...',
   },
 ];
 
@@ -108,7 +54,7 @@ export class SignIn extends Block {
   }
 
   render() {
-    console.log('[this.compile(tmp)]: ', this.compile(tmp))
+    // console.log('[this.compile(tmp)]: ', this.compile(tmp))
     return this.compile(tmp);
   }
 }

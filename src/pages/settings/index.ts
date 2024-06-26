@@ -99,7 +99,7 @@ export class Settings extends Block {
 
   init() {
     this.children.inputs = inputs.map((input) => {
-      console.log(input)
+      // console.log(input)
       return new Input(input)
     });
     this.children.link = new Link({
@@ -109,7 +109,7 @@ export class Settings extends Block {
   }
 
   render() {
-    console.log('[this.compile(tmp)]: ', this.compile(tmp))
+    // console.log('[this.compile(tmp)]: ', this.compile(tmp))
     return this.compile(tmp);
   }
 }

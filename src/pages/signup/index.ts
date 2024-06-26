@@ -59,36 +59,13 @@ const inputs: InputProps[] = [
   },
   {
     type: 'text',
-    name: 'display_name',
-    id: 'display_name',
+    name: 'password',
+    id: 'password',
     // helper: 'This field is required',
-    label: 'Display name',
+    label: 'Password',
     outlined: true,
   },
-  {
-    type: 'file',
-    name: 'avatar',
-    id: 'avatar',
-    // helper: 'This field is required',
-    label: 'Avatar',
-    outlined: true,
-  },
-  {
-    type: 'text',
-    name: 'oldPassword',
-    id: 'oldPassword',
-    // helper: 'This field is required',
-    label: 'Old password',
-    outlined: true,
-  },
-  {
-    type: 'text',
-    name: 'newPassword',
-    id: 'newPassword',
-    // helper: 'This field is required',
-    label: 'New password',
-    outlined: true,
-  },
+  
 ];
 
 export class SignUp extends Block {
@@ -108,7 +85,7 @@ export class SignUp extends Block {
   }
 
   render() {
-    console.log('[this.compile(tmp)]: ', this.compile(tmp))
+    // console.log('[this.compile(tmp)]: ', this.compile(tmp))
     return this.compile(tmp);
   }
 }

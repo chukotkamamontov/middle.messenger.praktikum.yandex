@@ -1,18 +1,11 @@
-// @import '../../assets/styles/styles.css';
 @import '../../assets/styles/styles.css';
 
 .container {
   width: 100vw;
-  height: 100vh;
-  background-color: var(--bg-error-page);
+  min-height: 100vh;
+  background-color: var(--bg-settings-page);
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  // overflow: auto;
-  .form {
-    .formList {
-      display: flex;
-      flex-direction: column;
-    }
-  }
 }
