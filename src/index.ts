@@ -40,6 +40,11 @@ import { Profile } from './pages/profile';
 import { SignIn } from "./pages/signin";
 import { SignUp } from './pages/signup';
 
+import { Fetch } from './tools/fetch'
+
+const fetch = new Fetch()
+fetch.get('https://fakestoreapi.com/products/1').then(res => console.log(res));
+
 const ROUTES: any = {
   '/': new HomePage(),
   '/settings': new Settings(),
