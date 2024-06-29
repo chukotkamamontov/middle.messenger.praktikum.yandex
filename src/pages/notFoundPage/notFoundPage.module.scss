@@ -1,12 +1,13 @@
-@import '../../assets/styles/styles.scss';
+@import '../../assets/styles/styles';
 
 .container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   min-width: 100vw;
   min-height: 100vh;
   background-color: var(--bg-error-page);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  
   .box {
     font-size: 50px;
   }

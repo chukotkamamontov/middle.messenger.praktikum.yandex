@@ -1,12 +1,13 @@
-@import '../../assets/styles/styles.scss';
+@import '../../assets/styles/styles';
 
 .container {
-  width: 100vw;
-  background-color: var(--bg-signup-page);
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  width: 100vw;
+  background-color: var(--bg-signup-page);
+
   .form {
     .formList {
       display: flex;

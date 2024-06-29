@@ -1,9 +1,10 @@
-@import '../../../../assets/styles/styles.scss';
+@import '../../../../assets/styles/styles';
 
 .leftPanel {
   width: 310px;
   min-height: 100vh;
   background-color: var(--bg-left-panel);
+
   .header {
     background-color: crimson;
   }
