@@ -148,7 +148,7 @@ class Block<P extends Record<string, any> = any> {
     // Создаем заглушки для всех children
     
     for (const [name, component] of Object.entries(this.children)) {
-        console.log('[component]: ', component)
+        // console.log('[component]: ', component)
         contextAndStubs[name] = Array.isArray(component)
             ? component.map((comp) => `<div data-id="${comp.id}"></div>`)
             : `<div data-id="${(component as Block).id}"></div>`;
