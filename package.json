@@ -13,7 +13,7 @@
     "dev": "vite --open",
     "build": "vite build --emptyOutDir",
     "preview": "vite preview",
-    "start": "npm run build && node src/app.js",
+    "start": "npm run build && node app.js",
     "lint": "eslint ./src --ext js --report-unused-disable-directives --max-warnings 0",
     "format": "prettier --write ."
   },
