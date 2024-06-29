@@ -4,60 +4,11 @@ import { Form } from '../../blocks/form';
 import { Link } from '../../components/link';
 import { InputBlock } from '../../blocks/inputBlock.ts';
 import { Button } from '../../components/button';
-import { InputProps } from '../../types';
-
-
-const inputs: InputProps[] = [
-  {
-    type: 'text',
-    id: 'first_name',
-    outlined: true,
-    name: 'first_name',
-    label: 'First name',
-  },
-  {
-    type: 'text',
-    name: 'second_name',
-    id: 'second_name',
-    label: 'Second name',
-    outlined: true,
-  },
-  {
-    type: 'text',
-    name: 'login',
-    id: 'login',
-    label: 'Login',
-    outlined: true,
-  },
-  {
-    type: 'text',
-    name: 'email',
-    id: 'email',
-    label: 'Email',
-    outlined: true,
-  },
-  {
-    type: 'text',
-    name: 'phone',
-    id: 'phone',
-    label: 'Phone',
-    outlined: true,
-  },
-  {
-    type: 'text',
-    name: 'password',
-    id: 'password',
-    label: 'Password',
-    outlined: true,
-  },
-  
-];
 
 export class SignUp extends Block {
   constructor() {
     super('main', {});
   }
-
 
   init() {
     this.children.form = new Form({
