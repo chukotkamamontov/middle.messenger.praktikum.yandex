@@ -1,11 +1,8 @@
 import styles from './profile.module.scss';
 
 export const tmp = `
-  <nav>
-    <ul class=${styles.nav}>
-        {{#each links}}
-            <li>{{{this}}}</li>
-        {{/each}}
-    </ul>
-  </nav>
+  <div class=${styles.container}>
+    <h2>Страница пользователя</h2>
+    {{{link}}}
+  </div>
 `;

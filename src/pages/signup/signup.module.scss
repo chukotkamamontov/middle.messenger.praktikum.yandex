@@ -2,13 +2,11 @@
 
 .container {
   width: 100vw;
-  height: 100vh;
   background-color: var(--bg-signup-page);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  // overflow: auto;
   .form {
     .formList {
       display: flex;

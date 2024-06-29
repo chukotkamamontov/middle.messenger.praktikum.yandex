@@ -1,9 +1,8 @@
-import styles from './input.module.scss';
+import styles from './textarea.module.scss';
 
 export const tmp = `
-    <input
-      class=${styles.input}
-      type="{{type}}" 
+    <textarea
+      class=${styles.textarea}
       id="{{id}}"
       name="{{name}}"
       placeholder="{{placeholder}}"

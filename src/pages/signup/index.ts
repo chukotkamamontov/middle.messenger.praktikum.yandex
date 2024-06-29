@@ -1,19 +1,10 @@
 import Block from '../../tools/Block';
 import { tmp } from './signup.tmp';
-import Input from '../../components/input'
+import { Form } from '../../blocks/form';
 import { Link } from '../../components/link';
-
-export interface InputProps {
-  type: 'text' | 'password' | 'tel' | 'email' | 'file';
-  id: string;
-  outlined?: boolean;
-  name: string;
-  placeholder?: string;
-  events?: {
-    blur?: (event: FocusEvent) => void;
-  };
-  label: string;
-}
+import { InputBlock } from '../../blocks/inputBlock.ts';
+import { Button } from '../../components/button';
+import { InputProps } from '../../types';
 
 
 const inputs: InputProps[] = [
@@ -22,14 +13,12 @@ const inputs: InputProps[] = [
     id: 'first_name',
     outlined: true,
     name: 'first_name',
-    // helper: 'This field is required',
     label: 'First name',
   },
   {
     type: 'text',
     name: 'second_name',
     id: 'second_name',
-    // helper: 'This field is required',
     label: 'Second name',
     outlined: true,
   },
@@ -37,7 +26,6 @@ const inputs: InputProps[] = [
     type: 'text',
     name: 'login',
     id: 'login',
-    // helper: 'This field is required',
     label: 'Login',
     outlined: true,
   },
@@ -45,7 +33,6 @@ const inputs: InputProps[] = [
     type: 'text',
     name: 'email',
     id: 'email',
-    // helper: 'This field is required',
     label: 'Email',
     outlined: true,
   },
@@ -53,7 +40,6 @@ const inputs: InputProps[] = [
     type: 'text',
     name: 'phone',
     id: 'phone',
-    // helper: 'This field is required',
     label: 'Phone',
     outlined: true,
   },
@@ -61,7 +47,6 @@ const inputs: InputProps[] = [
     type: 'text',
     name: 'password',
     id: 'password',
-    // helper: 'This field is required',
     label: 'Password',
     outlined: true,
   },
@@ -75,17 +60,63 @@ export class SignUp extends Block {
 
 
   init() {
-    this.children.inputs = inputs.map((input) => {
-      return new Input(input)
+    this.children.form = new Form({
+      inputs: [
+        new InputBlock({
+          type: 'text',
+          id: 'first_name',
+          outlined: true,
+          name: 'first_name',
+          label: 'First name',
+        }),
+        new InputBlock({
+          type: 'text',
+          name: 'second_name',
+          id: 'second_name',
+          label: 'Second name',
+          outlined: true,
+        }),
+        new InputBlock({
+          type: 'text',
+          name: 'login',
+          id: 'login',
+          label: 'Login',
+          outlined: true,
+        }),
+        new InputBlock({
+          type: 'text',
+          name: 'email',
+          id: 'email',
+          label: 'Email',
+          outlined: true,
+        }),
+        new InputBlock({
+          type: 'text',
+          name: 'phone',
+          id: 'phone',
+          label: 'Phone',
+          outlined: true,
+        }),
+        new InputBlock({
+          type: 'text',
+          name: 'password',
+          id: 'password',
+          label: 'Password',
+          outlined: true,
+        }),
+      ],
+      submitButton: new Button({
+        type: 'submit',
+        text: 'Зарегистрироваться',
+      }),
+      link: new Link({
+        to: '/signin',
+        text: 'Уже зарегистрирован',
+      }),
     });
-    this.children.link = new Link({
-      text: 'Вернуться домой',
-      to: '/',
-    },);
   }
 
   render() {
-    // console.log('[this.compile(tmp)]: ', this.compile(tmp))
     return this.compile(tmp);
   }
 }

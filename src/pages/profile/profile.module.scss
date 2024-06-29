@@ -1,7 +1,9 @@
-.nav {
+.container {
   display: flex;
   justify-content: space-around;
   list-style: none;
   align-items: center;
+  background-color: hotpink;
+  min-height: 100vh;
 }
 

@@ -1,5 +1,7 @@
 import Block from './tools/block';
 
+// pages types
+
 export type NotFoundPageProps = {
   message: string;
   statusCode: string;
@@ -10,22 +12,7 @@ export type ErrorPageProps = {
   statusCode: string;
 }
 
-export type LinkProps = {
-  className?: string;
-  text: string;
-  to: string;
-}
-
-export interface InputProps {
-  type: 'text' | 'password' | 'tel' | 'email' | 'file';
-  id: string;
-  isOutlined?: boolean;
-  name: string;
-  placeholder?: string;
-  events?: {
-    blur?: (event: FocusEvent) => void;
-  };
-}
+// blocks types
 
 export type LeftPanelProps = {
   className?: string;
@@ -40,4 +27,62 @@ export type LentaProps = {
 export type MessageProps = {
   className?: string;
   data: string;
+}
+
+export type FormProps = {
+  className?: string;
+  inputs?: Block[];
+  link?: Block;
+  submitButton: Block;
+}
+
+// components types
+
+export type ButtonProps = {
+  type: 'button' | 'submit';
+  text: string;
+  events?: {
+    click: () => void;
+  };
+}
+
+export type InputProps = {
+  type: 'text' | 'password' | 'tel' | 'email' | 'file';
+  id: string;
+  outlined?: boolean;
+  name: string;
+  placeholder?: string;
+  label?: string;
+  events?: {
+    blur?: (event: FocusEvent) => void;
+  };
+}
+
+export type TextareaProps = {
+  id: string;
+  name: string;
+  placeholder?: string;
+  label?: string;
+  events?: {
+    blur?: (event: FocusEvent) => void;
+  };
+}
+
+export type InputBlockProps = {
+  className?: string;
+  id: string;
+  outlined?: boolean;
+  label: string;
+  name: string;
+  type: 'text' | 'password' | 'tel' | 'email' | 'file';
+}
+
+export type LinkProps = {
+  className?: string;
+  text: string;
+  to: string;
+}
+
+export type ErrorProps = {
+  text: string;
 }
