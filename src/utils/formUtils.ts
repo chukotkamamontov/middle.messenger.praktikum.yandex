@@ -43,15 +43,14 @@ const validateEmail = (value: string) => {
   if (!emailRegExp.test(value)) {
     return 'Incorrect email. Try something easier';
   }
-  return ''
+  return '';
 };
-
 
 const validatePhone = (value: string) => {
   const phoneRegExp = /^\+?\d{10,15}$/;
   if (!phoneRegExp.test(value)) {
     return 'Incorrect phone number';
-  };
+  }
   return '';
 };
 
@@ -101,9 +100,7 @@ export const validate = (input: validateParams) => {
   return errors;
 };
 
-export const validateFormSubmit = (form: HTMLFormElement, inputs: Block[], isMessage = false) => {
-  console.log(inputs)
-  console.log(isMessage)
+export const validateFormSubmit = (form: HTMLFormElement) => {
   const formData = new FormData(form);
   const formFields: Record<string, string> = {};
 

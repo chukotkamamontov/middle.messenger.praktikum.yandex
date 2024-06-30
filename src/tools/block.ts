@@ -149,7 +149,7 @@ export default class Block<P extends Record<string, any> = any> {
 
     for (const [name, component] of Object.entries(this.children)) {
       // console.log('[component]: ', component)
-      console.log(component)
+      // console.log(component)
       contextAndStubs[name] = Array.isArray(component)
         ? component.map((comp) => `<div data-id="${comp.id}"></div>`)
         : `<div data-id="${(component as Block).id}"></div>`;

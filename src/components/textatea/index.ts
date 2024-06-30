@@ -8,7 +8,6 @@ export class Textarea extends Block {
   }
 
   init() {
-    console.log('[textarea] [props]: ', this.props)
     const element = this.element as HTMLTextAreaElement;
     element.className = styles.input;
     if (this.props.isOutlined) {
