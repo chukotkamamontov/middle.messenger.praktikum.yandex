@@ -101,8 +101,8 @@ export const validate = (input: validateParams) => {
 };
 
 export const validateFormSubmit = (form: HTMLFormElement, inputs: Block[], isMessage = false) => {
-  console.log('[validateFormSubmit] [inputs]: ', inputs)
-  console.log('[validateFormSubmit] [isMessage]: ', isMessage)
+  console.log('[validateFormSubmit] [inputs]: ', inputs);
+  console.log('[validateFormSubmit] [isMessage]: ', isMessage);
   const formData = new FormData(form);
   const formFields: Record<string, string> = {};
 
