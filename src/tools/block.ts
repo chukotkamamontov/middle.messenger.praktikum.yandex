@@ -1,8 +1,8 @@
 import { v4 as uuidv4 } from 'uuid';
 import Handlebars from 'handlebars';
-import { EventBus } from './eventBus';
+import EventBus from './eventBus';
 
-class Block<P extends Record<string, any> = any> {
+export default class Block<P extends Record<string, any> = any> {
   static EVENTS = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
@@ -144,14 +144,14 @@ class Block<P extends Record<string, any> = any> {
   protected compile(template: string) {
     // console.log('[template]: ', template)
     const contextAndStubs = { ...this.props } as Record<string, any>;
-    
+
     // Создаем заглушки для всех children
-    
+
     for (const [name, component] of Object.entries(this.children)) {
-        // console.log('[component]: ', component)
-        contextAndStubs[name] = Array.isArray(component)
-            ? component.map((comp) => `<div data-id="${comp.id}"></div>`)
-            : `<div data-id="${(component as Block).id}"></div>`;
+      // console.log('[component]: ', component)
+      contextAndStubs[name] = Array.isArray(component)
+        ? component.map((comp) => `<div data-id="${comp.id}"></div>`)
+        : `<div data-id="${(component as Block).id}"></div>`;
     }
 
     const html = Handlebars.compile(template)(contextAndStubs);
@@ -160,26 +160,25 @@ class Block<P extends Record<string, any> = any> {
 
     // Заменяем заглушки реальными элементами
     for (const component of Object.values(this.children)) {
-        if (Array.isArray(component)) {
-            component.forEach((comp) => this._replaceStubWithContent(fragment, comp));
-        } else {
-            this._replaceStubWithContent(fragment, component as Block);
-        }
+      if (Array.isArray(component)) {
+        component.forEach((comp) => this._replaceStubWithContent(fragment, comp));
+      } else {
+        this._replaceStubWithContent(fragment, component as Block);
+      }
     }
     // console.log('[fragment.content]: ', fragment.content)
     return fragment.content;
-  } 
-
+  }
 
   private _replaceStubWithContent(fragment: HTMLTemplateElement, component: Block) {
     const stub = fragment.content.querySelector(`[data-id="${component.id}"]`);
     if (!stub) {
-        return;
+      return;
     }
     const content = component.getContent();
     if (content) {
-        content.append(...Array.from(stub.childNodes));
-        stub.replaceWith(content);
+      content.append(...Array.from(stub.childNodes));
+      stub.replaceWith(content);
     }
   }
 
@@ -225,5 +224,3 @@ class Block<P extends Record<string, any> = any> {
   //   this.getContent()!.style.display = 'none';
   // }
 }
-
-export default Block;

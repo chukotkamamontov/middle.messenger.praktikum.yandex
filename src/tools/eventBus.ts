@@ -1,9 +1,10 @@
-export class EventBus {
+export default class EventBus {
   listeners: Record<string, Array<(...args: any[]) => void>>;
 
   constructor() {
     this.listeners = {};
   }
+
   // регистрирует новый обработчик для указанного события
   on<T extends unknown[]>(event: string, callback: (...args: T) => void): EventBus {
     if (!this.listeners[event]) {
@@ -12,6 +13,7 @@ export class EventBus {
     this.listeners[event].push(callback);
     return this;
   }
+
   // удаляет указанный обработчик для указанного события
   off<T extends unknown[]>(event: string, callback: (...args: T) => void): EventBus {
     if (!this.listeners[event]) {
@@ -20,6 +22,7 @@ export class EventBus {
     this.listeners[event] = this.listeners[event].filter((cb) => cb !== callback);
     return this;
   }
+
   // вызывает все зарегистрированные обработчики для указанного события
   emit<T extends unknown[]>(event: string, ...args: T): EventBus {
     if (!this.listeners[event]) {

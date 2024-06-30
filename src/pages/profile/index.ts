@@ -10,8 +10,8 @@ export class Profile extends Block {
   init() {
     this.children.link = new Link({
       to: '/',
-      text: 'Вернуться на главную страницу'
-    })
+      text: 'Вернуться на главную страницу',
+    });
   }
 
   render() {

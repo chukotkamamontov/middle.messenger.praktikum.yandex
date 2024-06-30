@@ -1,7 +1,7 @@
 import Block from '../../../../tools/block';
 import { LentaProps } from '../../../../types';
 import { Message } from '../messages';
-import { tmp } from './lenta.tmp'
+import { tmp } from './lenta.tmp';
 
 export class Lenta extends Block {
   constructor(props: LentaProps) {

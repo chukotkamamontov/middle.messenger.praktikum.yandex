@@ -1,6 +1,6 @@
 import { queryStringify } from '../utils/fetchUtils';
 
-export enum METHOD {
+export enum REST_METHODS {
   GET = 'GET',
   POST = 'POST',
   PUT = 'PUT',
@@ -8,7 +8,7 @@ export enum METHOD {
   DELETE = 'DELETE',
 }
 
-type Methods = keyof typeof METHOD;
+type Methods = keyof typeof REST_METHODS;
 
 export type Options = {
   method: Methods;
@@ -28,7 +28,7 @@ export type FetchResponse = {
 export class Fetch {
   options: Options;
 
-  constructor(options: Options = { method: METHOD.GET }) {
+  constructor(options: Options = { method: REST_METHODS.GET }) {
     this.options = options;
   }
 
@@ -37,29 +37,31 @@ export class Fetch {
     if (options.data) {
       queries = queryStringify(options.data);
     }
-    return this.request(url + queries, { ...options, method: METHOD.GET });
+    return this.request(url + queries, { ...options, method: REST_METHODS.GET });
   }
 
   post(url: string, options: OptionsWithoutMethod = {}): Promise<FetchResponse> {
-    return this.request(url, { ...options, method: METHOD.POST });
+    return this.request(url, { ...options, method: REST_METHODS.POST });
   }
 
   put(url: string, options: OptionsWithoutMethod = {}): Promise<FetchResponse> {
-    return this.request(url, { ...options, method: METHOD.PUT });
+    return this.request(url, { ...options, method: REST_METHODS.PUT });
   }
 
   patch(url: string, options: OptionsWithoutMethod = {}): Promise<FetchResponse> {
-    return this.request(url, { ...options, method: METHOD.PATCH });
+    return this.request(url, { ...options, method: REST_METHODS.PATCH });
   }
 
   delete(url: string, options: OptionsWithoutMethod = {}): Promise<FetchResponse> {
-    return this.request(url, { ...options, method: METHOD.DELETE });
+    return this.request(url, { ...options, method: REST_METHODS.DELETE });
   }
 
-  request(url: string, options: Options = { method: METHOD.GET }): Promise<FetchResponse> {
+  request(url: string, options: Options = { method: REST_METHODS.GET }): Promise<FetchResponse> {
     this.options = { ...this.options };
     return new Promise((resolve, reject) => {
-      const { method, data, headers, responseType = 'json' } = options;
+      const {
+        method, data, headers, responseType = 'json',
+      } = options;
 
       const xhr = new XMLHttpRequest();
       xhr.open(method, url);
@@ -88,7 +90,7 @@ export class Fetch {
       xhr.onerror = handleError;
       xhr.ontimeout = handleError;
 
-      if (method === METHOD.GET || data === undefined) {
+      if (method === REST_METHODS.GET || data === undefined) {
         xhr.send();
       } else {
         xhr.send(JSON.stringify(data));

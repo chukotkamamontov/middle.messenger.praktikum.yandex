@@ -19,24 +19,17 @@ enum NAMES {
 }
 
 const validateLogin = (value: string) => {
+  console.log(value);
   return '';
 };
 
-const validateEmail = (value: string) => {
-  return '';
-};
+const validateEmail = (value: string) => '';
 
-const validateName = (value: string) => {
-  return '';
-};
+const validateName = (value: string) => '';
 
-const validatePhone = (value: string) => {
-  return '';
-};
+const validatePhone = (value: string) => '';
 
-const validatePassword = (value: string) => {
-  return '';
-};
+const validatePassword = (value: string) => '';
 
 export const validate = (input: validateParams) => {
   const errors: ErrorsObject = {};
@@ -64,7 +57,6 @@ export const validate = (input: validateParams) => {
   });
   return errors;
 };
-
 
 export const validateFormSubmit = (form: HTMLFormElement, inputs: Block[], isMessage = false) => {
   const formData = new FormData(form);

@@ -4,7 +4,7 @@ import { validateFormSubmit } from '../../utils/formUtils';
 import { FormProps } from '../../types';
 
 interface SubmitEvent extends Event {
-  submitter: HTMLElement; 
+  submitter: HTMLElement;
 }
 
 export class Form extends Block {

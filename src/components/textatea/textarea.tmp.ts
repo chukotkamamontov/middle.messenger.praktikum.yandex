@@ -8,4 +8,3 @@ export const tmp = `
       placeholder="{{placeholder}}"
     />
 `;
-
