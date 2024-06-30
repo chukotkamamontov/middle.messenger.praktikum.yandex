@@ -27,8 +27,7 @@
         "no-restricted-syntax": "off",
         "@typescript-eslint/no-this-alias": "off",
         "no-shadow": "off",
-        "no-param-reassign": "off",
-        "semi": "off"
+        "no-param-reassign": "off"
     },
   "settings": {
     "import/resolver": {

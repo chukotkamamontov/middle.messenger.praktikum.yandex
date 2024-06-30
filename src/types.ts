@@ -32,6 +32,7 @@ export type MessageProps = {
 export type FormProps = {
   className?: string;
   inputs?: Block[];
+  testareas?: Block[];
   link?: Block;
   submitButton: Block;
 }
@@ -75,6 +76,14 @@ export type InputBlockProps = {
   label: string;
   name: string;
   type: 'text' | 'password' | 'tel' | 'email' | 'file';
+}
+
+export type TextareaBlockProps = {
+  className?: string;
+  id: string;
+  outlined?: boolean;
+  label?: string;
+  name: string;
 }
 
 export type LinkProps = {

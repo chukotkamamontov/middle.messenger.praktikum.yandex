@@ -12,35 +12,63 @@ enum NAMES {
   FIRST_NAME = 'first_name',
   SECOND_NAME = 'second_name',
   LOGIN = 'login',
-  PASSWORD = 'password',
-  MESSAGE = 'message',
   EMAIL = 'email',
   PHONE = 'phone',
+  PASSWORD = 'password',
+  MESSAGE = 'message',
 }
 
+const validateName = (value: string) => {
+  const capitalRegExp = /^[A-ZА-ЯЁ].*$/;
+  const excludedSymbolsRegExp = /^[^-!@#$%^&*()_+=;:,./?\\|`~[\]{}0-9\s]+$/;
+  if (!capitalRegExp.test(value)) {
+    return 'Value must start with the capital simbol';
+  }
+  if (!excludedSymbolsRegExp.test(value)) {
+    return 'Value contains illegal symbol';
+  }
+  return '';
+};
+
 const validateLogin = (value: string) => {
-  console.log(value);
+  const loginRegExp = /^(?!-|_)(?!.*(?:-|_){2})[A-Za-z0-9_-]{3,20}$/;
+  if (!loginRegExp.test(value)) {
+    return 'Incorrect login. Try something easier';
+  }
   return '';
 };
 
 const validateEmail = (value: string) => {
-  if (value) return ''
+  const emailRegExp = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu;
+  if (!emailRegExp.test(value)) {
+    return 'Incorrect email. Try something easier';
+  }
   return ''
 };
 
-const validateName = (value: string) => {
-  if (value) return ''
-  return ''
-};
 
 const validatePhone = (value: string) => {
-  if (value) return ''
-  return ''
+  const phoneRegExp = /^\+?\d{10,15}$/;
+  if (!phoneRegExp.test(value)) {
+    return 'Incorrect phone number';
+  };
+  return '';
 };
 
 const validatePassword = (value: string) => {
-  if (value) return ''
-  return ''
+  const passwordRegExp = /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,40}$/;
+  if (!passwordRegExp.test(value)) {
+    return 'Incorrect password value';
+  }
+  return '';
+};
+
+const validateMessage = (value: string) => {
+  const messageRegExp = /^\s*$/;
+  if (value.length === 0 || messageRegExp.test(value)) {
+    return 'Message must has something';
+  }
+  return '';
 };
 
 export const validate = (input: validateParams) => {
@@ -62,6 +90,9 @@ export const validate = (input: validateParams) => {
         break;
       case NAMES.PHONE:
         errors[name] = validatePhone(value);
+        break;
+      case NAMES.MESSAGE:
+        errors[name] = validateMessage(value);
         break;
       default:
         break;

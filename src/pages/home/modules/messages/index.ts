@@ -1,6 +1,6 @@
 import { Form } from '../../../../blocks/form';
+import { InputBlock } from '../../../../blocks/inputBlock.ts';
 import { Button } from '../../../../components/button';
-import { Textarea } from '../../../../components/textatea';
 import Block from '../../../../tools/block';
 import { MessageProps } from '../../../../types';
 import { tmp } from './message.tmp';
@@ -11,21 +11,19 @@ export class Message extends Block {
   }
 
   init() {
-    this.children.textarea = new Textarea({
-      name: 'message',
-      id: 'message',
-    });
     this.children.form = new Form({
-      inputs: [
-        new Textarea({
-          name: 'message',
-          id: 'message',
-        }),
-      ],
       submitButton: new Button({
         type: 'submit',
         text: 'Отправить',
       }),
+      inputs: [
+        new InputBlock({
+          id: 'message',
+          name: 'message',
+          type: 'text',
+          label: 'Message:',
+        }),
+      ],
     });
   }
 
