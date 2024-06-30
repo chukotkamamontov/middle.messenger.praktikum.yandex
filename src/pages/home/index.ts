@@ -1,5 +1,5 @@
+import Block from '../../tools/block';
 import { Link } from '../../components/link';
-import Block from '../../tools/Block';
 import { tmp } from './home.tmp';
 import { LeftPanel } from './modules/leftPanel';
 import { Lenta } from './modules/lenta';

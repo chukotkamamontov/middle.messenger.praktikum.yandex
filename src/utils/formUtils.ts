@@ -23,13 +23,25 @@ const validateLogin = (value: string) => {
   return '';
 };
 
-const validateEmail = (value: string) => '';
+const validateEmail = (value: string) => {
+  if (value) return ''
+  return ''
+};
 
-const validateName = (value: string) => '';
+const validateName = (value: string) => {
+  if (value) return ''
+  return ''
+};
 
-const validatePhone = (value: string) => '';
+const validatePhone = (value: string) => {
+  if (value) return ''
+  return ''
+};
 
-const validatePassword = (value: string) => '';
+const validatePassword = (value: string) => {
+  if (value) return ''
+  return ''
+};
 
 export const validate = (input: validateParams) => {
   const errors: ErrorsObject = {};
@@ -59,6 +71,8 @@ export const validate = (input: validateParams) => {
 };
 
 export const validateFormSubmit = (form: HTMLFormElement, inputs: Block[], isMessage = false) => {
+  console.log(inputs)
+  console.log(isMessage)
   const formData = new FormData(form);
   const formFields: Record<string, string> = {};
 

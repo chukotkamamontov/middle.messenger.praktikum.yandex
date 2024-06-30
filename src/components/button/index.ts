@@ -1,6 +1,6 @@
+import Block from '../../tools/block';
 import styles from './button.module.scss';
 import { ButtonProps } from '../../types';
-import Block from '../../tools/block';
 
 export class Button extends Block {
   constructor(props: ButtonProps) {
