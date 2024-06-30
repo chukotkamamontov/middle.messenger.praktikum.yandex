@@ -1,6 +1,6 @@
+import Block from '../../tools/block';
 import styles from './input.module.scss';
 import { InputProps } from '../../types';
-import Block from '../../tools/block';
 
 export class Input extends Block {
   constructor(props: InputProps) {

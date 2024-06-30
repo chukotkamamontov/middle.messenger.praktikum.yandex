@@ -1,4 +1,4 @@
-import Block from '../../tools/Block';
+import Block from '../../tools/block';
 import { tmp } from './signup.tmp';
 import { Form } from '../../blocks/form';
 import { Link } from '../../components/link';

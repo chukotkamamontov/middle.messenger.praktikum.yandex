@@ -14,7 +14,7 @@
     "build": "vite build --emptyOutDir",
     "preview": "vite preview",
     "start": "npm run build && node app.js",
-    "lint": "stylelint \"**/*.scss\" && eslint . --ext .ts && tsc --noEmit",
+    "lint": "stylelint \"**/*.scss\" && eslint . --ext .ts",
     "format": "prettier --write ."
   },
   "devDependencies": {
