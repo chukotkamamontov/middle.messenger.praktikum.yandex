@@ -32,7 +32,6 @@ export type MessageProps = {
 export type FormProps = {
   className?: string;
   inputs?: Block[];
-  testareas?: Block[];
   link?: Block;
   submitButton: Block;
 }
