@@ -55,10 +55,10 @@ const validatePhone = (value: string) => {
 };
 
 const validatePassword = (value: string) => {
-  const passwordRegExp = /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,40}$/;
-  if (!passwordRegExp.test(value)) {
-    return 'Incorrect password value';
-  }
+  // const passwordRegExp = /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,40}$/;
+  // if (!passwordRegExp.test(value)) {
+  //   return 'Incorrect password value';
+  // }
   return '';
 };
 
@@ -112,4 +112,5 @@ export const validateFormSubmit = (form: HTMLFormElement, inputs: Block[], isMes
     }
   });
   console.log(formFields);
+  return formFields
 };

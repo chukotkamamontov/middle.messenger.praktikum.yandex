@@ -1,3 +1,14 @@
 .button {
-    background-color: hotpink;
+  padding: 16px 64px;
+  // width: 320px;
+  font-weight: 600;
+  color: var( --color-default);
+  cursor: pointer;
+  background-color: var(--bg-signin-page);
+  border: none;
+  border-radius: 8px;
+
+  &:hover {
+    opacity: 0.8;
+  }
 }

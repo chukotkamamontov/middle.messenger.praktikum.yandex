@@ -1,32 +1,32 @@
-import { render } from './tools/render';
-import { HomePage } from './pages/home';
-import { NotFoundPage } from './pages/notFoundPage';
-import { Settings } from './pages/settings';
-import { Profile } from './pages/profile';
-import { SignIn } from './pages/signin';
-import { SignUp } from './pages/signup';
+import './assets/styles/styles.scss';
+import router from './tools/router';
+import { Login } from './pages/login/modules/login'
+import { Register } from './pages/login/modules/register';
 
-import { Fetch } from './tools/fetch';
+export enum Routes {
+  Chats = '/messenger',
+  EditPassword = '/edit-password',
+  EditProfile = '/settings',
+  Error = '/500',
+  Home = '/',
+  Login = '/login',
+  NotFound = '/404',
+  Profile = '/profile',
+  Register = '/sign-up',
+}
 
-const fetch = new Fetch();
-fetch.get('https://fakestoreapi.com/products/1').then((res) => console.log(res));
+window.addEventListener('DOMContentLoaded', async () => {
+  router
+    .use(Routes.Home, Login)
+    .use(Routes.Login, Login)
+    .use(Routes.Register, Register)
 
-const ROUTES: any = {
-  '/': new HomePage(),
-  '/settings': new Settings(),
-  '/profile': new Profile(),
-  '/signin': new SignIn(),
-  '/signup': new SignUp(),
-  '/404': new NotFoundPage({
-    statusCode: '404',
-    message: 'Страница не найдена',
-  }),
-  '/500': new NotFoundPage({
-    statusCode: '500',
-    message: 'Ошибка сервера',
-  }),
-};
 
-document.addEventListener('DOMContentLoaded', () => {
-  render('#app', ROUTES[window.location.pathname]);
+  switch (window.location.pathname) {
+    case Routes.Home:
+    case Routes.Register:
+      break;
+  }
+
+  router.go(Routes.Home);
 });

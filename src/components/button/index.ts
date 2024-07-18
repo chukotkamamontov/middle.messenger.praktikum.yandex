@@ -1,19 +1,20 @@
-import Block from '../../tools/block';
 import styles from './button.module.scss';
-import { ButtonProps } from '../../types';
+import Block from '../../tools/block';
+
+export interface ButtonProps {
+  events?: {
+    click: () => void;
+  };
+  text: string;
+  type: 'button' | 'submit';
+}
 
 export class Button extends Block {
   constructor(props: ButtonProps) {
-    super('button', props);
-  }
-
-  init() {
-    const element = this.element as HTMLButtonElement;
-    element.className = styles.button;
-    element.type = this.props.type;
+    super(props);
   }
 
   render() {
-    return this.compile('{{text}}');
+    return this.compile(`<button class=${styles.button} type="{{type}}">{{text}}</button>`);
   }
 }

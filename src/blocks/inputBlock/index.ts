@@ -5,9 +5,9 @@ import { InputBlockProps } from '../../types';
 import { validate } from '../../utils/formUtils';
 import { tmp } from './inputBlock.tmp';
 
-export class InputBlock extends Block {
+export class inputBlock extends Block {
   constructor(props: InputBlockProps) {
-    super('div', props);
+    super(props);
   }
 
   init() {
@@ -28,10 +28,6 @@ export class InputBlock extends Block {
         },
       },
     });
-
-    const element = this.element as HTMLDivElement;
-    // element.className = styles.container;
-    element.dataset.name = this.props.name;
   }
 
   render() {

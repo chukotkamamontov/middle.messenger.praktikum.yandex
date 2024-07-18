@@ -36,6 +36,20 @@ export type FormProps = {
   submitButton: Block;
 }
 
+export type LoginFormProps = {
+  className?: string;
+  inputs: Block[];
+  link: Block;
+  submitButton: Block;
+}
+
+export type RegistrationFormProps = {
+  className?: string;
+  inputs: Block[];
+  link: Block;
+  submitButton: Block;
+}
+
 // components types
 
 export type ButtonProps = {
@@ -85,12 +99,105 @@ export type TextareaBlockProps = {
   name: string;
 }
 
-export type LinkProps = {
-  className?: string;
-  text: string;
+export interface LinkProps {
+  content?: Block;
+  events?: {
+    click: (event: Event) => void;
+  };
+  text?: string;
   to: string;
 }
 
 export type ErrorProps = {
   text: string;
+}
+
+export interface SignUpData {
+  email: string;
+  first_name: string;
+  login: string;
+  password: string;
+  phone: string;
+  second_name: string;
+}
+
+export interface SignInData {
+  login: string;
+  password: string;
+}
+
+export interface UserInfo {
+  avatar: string;
+  display_name: string;
+  email: string;
+  first_name: string;
+  id: number;
+  login: string;
+  phone: string;
+  second_name: string;
+}
+
+export interface ProfileData {
+  display_name: string;
+  email: string;
+  first_name: string;
+  login: string;
+  phone: string;
+  second_name: string;
+}
+
+export interface PasswordData {
+  newPassword: string;
+  oldPassword: string;
+}
+
+export enum Routes {
+  Chats = '/messenger',
+  EditPassword = '/edit-password',
+  EditProfile = '/settings',
+  Error = '/500',
+  Home = '/',
+  Login = '/login',
+  NotFound = '/404',
+  Profile = '/profile',
+  Register = '/sign-up',
+}
+
+export interface MessageData {
+  chat_id: number;
+  content: string;
+  file?: {
+    content_size: number;
+    content_type: string;
+    filename: string;
+    id: number;
+    path: string;
+    upload_date: string;
+    user_id: number;
+  };
+  time: string;
+  type: string;
+  user_id: string;
+}
+
+export interface LastMessage {
+  content: string;
+  time: string;
+  user: {
+    avatar: string;
+    email: string;
+    first_name: string;
+    login: string;
+    phone: string;
+    second_name: string;
+  };
+}
+
+export interface Chat {
+  avatar: string;
+  created_by: number;
+  id: number;
+  last_message: LastMessage;
+  title: string;
+  unread_count: number;
 }

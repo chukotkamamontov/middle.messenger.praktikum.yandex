@@ -1,18 +1,13 @@
 import styles from './error.module.scss';
 import Block from '../../tools/block';
-import { ErrorProps } from '../../types';
+import { ErrorProps } from './types';
 
 export class Error extends Block {
   constructor(props: ErrorProps) {
-    super('span', props);
-  }
-
-  init() {
-    const element = this.element as HTMLSpanElement;
-    element.className = styles.error;
+    super(props);
   }
 
   render() {
-    return this.compile('{{text}}');
+    return this.compile(`<span class=${styles.error}>{{text}}</span`);
   }
 }

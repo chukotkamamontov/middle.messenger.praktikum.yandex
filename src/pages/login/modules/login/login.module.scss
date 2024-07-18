@@ -1,0 +1,21 @@
+.login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.container {
+  min-width: 512px;
+  padding: 48px 56px;
+  color: var(--color-default);
+  background-color: var(--bg-settings-page);
+  border-radius: 16px;
+}
+
+.title {
+  margin-bottom: 40px;
+
+  font-size: 1.5rem;
+  text-align: center;
+}

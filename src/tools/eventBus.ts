@@ -1,36 +1,33 @@
-export default class EventBus {
-  listeners: Record<string, Array<(...args: any[]) => void>>;
+type Handler<A extends unknown[] = unknown[]> = (...args: A) => void;
+type MapInterface<P> = P[keyof P];
 
-  constructor() {
-    this.listeners = {};
-  }
+export default class EventBus<
+  E extends Record<string, string> = Record<string, string>,
+  Args extends Record<MapInterface<E>, unknown[]> = Record<string, any[]>
+> {
+  private readonly listeners: {
+    [K in MapInterface<E>]?: Handler<Args[K]>[];
+  } = {};
 
-  // регистрирует новый обработчик для указанного события
-  on<T extends unknown[]>(event: string, callback: (...args: T) => void): EventBus {
+  on<Event extends MapInterface<E>>(event: Event, callback: Handler<Args[Event]>) {
     if (!this.listeners[event]) {
       this.listeners[event] = [];
     }
-    this.listeners[event].push(callback);
-    return this;
+
+    this.listeners[event]?.push(callback);
   }
 
-  // удаляет указанный обработчик для указанного события
-  off<T extends unknown[]>(event: string, callback: (...args: T) => void): EventBus {
+  off<Event extends MapInterface<E>>(event: Event, callback: Handler<Args[Event]>) {
     if (!this.listeners[event]) {
-      return this;
+      throw new Error(`Нет события: ${event}`);
     }
-    this.listeners[event] = this.listeners[event].filter((cb) => cb !== callback);
-    return this;
+
+    this.listeners[event] = this.listeners[event]!.filter((listener) => listener !== callback);
   }
 
-  // вызывает все зарегистрированные обработчики для указанного события
-  emit<T extends unknown[]>(event: string, ...args: T): EventBus {
-    if (!this.listeners[event]) {
-      throw new Error(`The event '${event}' does't exist`);
-    }
-    this.listeners[event].forEach((cb) => {
-      cb(...args);
+  emit<Event extends MapInterface<E>>(event: Event, ...args: Args[Event]) {
+    this.listeners[event]?.forEach((listener) => {
+      listener(...args);
     });
-    return this;
   }
 }

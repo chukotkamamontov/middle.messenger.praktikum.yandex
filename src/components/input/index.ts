@@ -1,15 +1,15 @@
-import Block from '../../tools/block';
 import styles from './input.module.scss';
-import { InputProps } from '../../types';
+import { InputProps } from './types';
+import Block from '../../tools/block';
+import { tmp } from './input.tmp';
 
 export class Input extends Block {
   constructor(props: InputProps) {
-    super('input', props);
+    super(props);
   }
 
-  init() {
+  componentDidMount() {
     const element = this.element as HTMLInputElement;
-    element.className = styles.input;
     if (this.props.isOutlined) {
       element.classList.add(styles.outlined);
     }
@@ -22,15 +22,9 @@ export class Input extends Block {
     if (this.props.name === 'search') {
       element.classList.add(styles.type_search);
     }
-    element.type = this.props.type;
-    element.name = this.props.name;
-    if (this.props.placeholder) {
-      element.placeholder = this.props.placeholder;
-    }
-    element.id = this.props.id;
   }
 
   render() {
-    return this.compile('');
+    return this.compile(tmp);
   }
 }

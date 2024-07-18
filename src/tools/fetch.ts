@@ -1,99 +1,111 @@
 import { queryStringify } from '../utils/fetchUtils';
 
-export enum REST_METHODS {
+enum METHODS {
+  DELETE = 'DELETE',
   GET = 'GET',
   POST = 'POST',
   PUT = 'PUT',
-  PATCH = 'PATCH',
-  DELETE = 'DELETE',
 }
 
-type Methods = keyof typeof REST_METHODS;
-
-export type Options = {
-  method: Methods;
+type Options = {
   data?: any;
-  headers?: Record<string, string>;
-  responseType?: 'json' | 'text' | 'document' | 'blob' | 'arraybuffer';
+  headers?: {
+    [headerName: string]: string;
+  };
+  method: METHODS;
+  timeout?: number;
 };
 
-export type OptionsWithoutMethod = Omit<Options, 'method'>;
+type OptionsWithoutMethod = Omit<Options, 'method'>;
 
-export type FetchResponse = {
-  status: number;
-  ok: boolean;
-  data?: ArrayBuffer | Blob | Document | JSON | string;
-};
+type HTTPMethod = (url: string, options?: OptionsWithoutMethod) => Promise<any>;
 
-export class Fetch {
-  options: Options;
+export class fetch {
+  protected BASE_URL = 'https://ya-praktikum.tech/api/v2';
 
-  constructor(options: Options = { method: REST_METHODS.GET }) {
-    this.options = options;
+  protected endpoint: string;
+
+  constructor(endpoint: string) {
+    this.endpoint = `${this.BASE_URL}${endpoint}`;
   }
 
-  get(url: string, options: OptionsWithoutMethod = {}): Promise<FetchResponse> {
-    let queries = '';
-    if (options.data) {
-      queries = queryStringify(options.data);
-    }
-    return this.request(url + queries, { ...options, method: REST_METHODS.GET });
-  }
+  get: HTTPMethod = (url, options = {}) => this.request(
+    this.endpoint + url,
+    {
+      ...options,
+      method: METHODS.GET,
+    },
+    options.timeout,
+  );
 
-  post(url: string, options: OptionsWithoutMethod = {}): Promise<FetchResponse> {
-    return this.request(url, { ...options, method: REST_METHODS.POST });
-  }
+  post: HTTPMethod = (url, options = {}) => this.request(
+    this.endpoint + url,
+    {
+      ...options,
+      method: METHODS.POST,
+    },
+    options.timeout,
+  );
 
-  put(url: string, options: OptionsWithoutMethod = {}): Promise<FetchResponse> {
-    return this.request(url, { ...options, method: REST_METHODS.PUT });
-  }
+  put: HTTPMethod = (url, options = {}) => this.request(
+    this.endpoint + url,
+    {
+      ...options,
+      method: METHODS.PUT,
+    },
+    options.timeout,
+  );
 
-  patch(url: string, options: OptionsWithoutMethod = {}): Promise<FetchResponse> {
-    return this.request(url, { ...options, method: REST_METHODS.PATCH });
-  }
+  delete: HTTPMethod = (url, options = {}) => this.request(
+    this.endpoint + url,
+    {
+      ...options,
+      method: METHODS.DELETE,
+    },
+    options.timeout,
+  );
 
-  delete(url: string, options: OptionsWithoutMethod = {}): Promise<FetchResponse> {
-    return this.request(url, { ...options, method: REST_METHODS.DELETE });
-  }
-
-  request(url: string, options: Options = { method: REST_METHODS.GET }): Promise<FetchResponse> {
-    this.options = { ...this.options };
+  request<Response>(url: string, options: Options = { method: METHODS.GET }, timeout: number = 5000): Promise<Response> {
+    const { data, headers = {}, method } = options;
     return new Promise((resolve, reject) => {
-      const {
-        method, data, headers, responseType = 'json',
-      } = options;
-
       const xhr = new XMLHttpRequest();
-      xhr.open(method, url);
+      const isGet = method === METHODS.GET;
+      const requestUrl = isGet && !!data ? `${url}${queryStringify(data)}` : url;
 
-      xhr.responseType = responseType;
+      xhr.open(method, requestUrl);
 
       if (headers) {
-        Object.entries(headers).forEach(([key, value]) => {
-          xhr.setRequestHeader(key, value);
+        Object.keys(headers).forEach((key) => {
+          xhr.setRequestHeader(key, headers[key]);
         });
       }
 
-      xhr.onload = () => {
-        resolve({
-          status: xhr.status,
-          ok: xhr.status >= 200 && xhr.status < 300,
-          data: xhr.response,
-        });
+      if (!(data instanceof FormData)) {
+        xhr.setRequestHeader('Content-Type', 'application/json');
+      }
+
+      xhr.onreadystatechange = () => {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          if (xhr.status < 400) {
+            resolve(xhr.response);
+          } else {
+            reject(xhr.response);
+          }
+        }
       };
 
-      const handleError = (err: ProgressEvent) => {
-        reject(err);
-      };
+      xhr.onabort = reject;
+      xhr.onerror = reject;
 
-      xhr.onabort = handleError;
-      xhr.onerror = handleError;
-      xhr.ontimeout = handleError;
+      xhr.timeout = timeout;
+      xhr.ontimeout = reject;
+      xhr.withCredentials = true;
+      xhr.responseType = 'json';
 
-      if (method === REST_METHODS.GET || data === undefined) {
+      if (isGet || !data) {
         xhr.send();
       } else {
-        xhr.send(JSON.stringify(data));
+        xhr.send(data instanceof FormData ? data : JSON.stringify(data));
       }
     });
   }

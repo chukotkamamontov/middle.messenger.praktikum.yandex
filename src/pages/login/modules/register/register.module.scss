@@ -1,0 +1,20 @@
+.registration {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 0;
+}
+
+.container {
+  min-width: 512px;
+  padding: 48px 56px;
+  color: var(--color-default);
+  background-color: var(--bg-settings-page);
+  border-radius: 16px;
+}
+
+.title {
+  margin-bottom: 40px;
+  font-size: 1.5rem;
+  text-align: center;
+}
