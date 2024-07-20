@@ -144,6 +144,8 @@ export interface ProfileData {
   login: string;
   phone: string;
   second_name: string;
+  avatar?: string;
+  id?: string;
 }
 
 export interface PasswordData {
@@ -152,7 +154,7 @@ export interface PasswordData {
 }
 
 export enum Routes {
-  Chats = '/messenger',
+  Messenger = '/messenger',
   EditPassword = '/edit-password',
   EditProfile = '/settings',
   Error = '/500',

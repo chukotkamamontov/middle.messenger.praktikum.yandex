@@ -76,7 +76,7 @@ class Block<P extends Record<string, unknown> = any> {
   }
 
   private _init() {
-    console.log(this._getChildrenAndProps)
+    // console.log(this._getChildrenAndProps)
     this.init();
 
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER);

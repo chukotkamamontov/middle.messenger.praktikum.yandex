@@ -2,7 +2,7 @@ import './assets/styles/styles.scss';
 import router from './tools/router';
 import { Login } from './pages/home/modules/login'
 import { Register } from './pages/home/modules/register';
-import { Home } from './pages/home';
+import { Profile } from './pages/profile';
 import { AuthController } from './controllers/AuthController';
 
 export enum Routes {
@@ -19,9 +19,10 @@ export enum Routes {
 
 window.addEventListener('DOMContentLoaded', async () => {
   router
-    .use(Routes.Home, Home)
+    .use(Routes.Home, Login)
     .use(Routes.Login, Login)
     .use(Routes.Register, Register)
+    .use(Routes.Profile, Profile)
 
   let isProtectedPage = true;
 
@@ -34,7 +35,14 @@ window.addEventListener('DOMContentLoaded', async () => {
 
   try {
     await AuthController.fetchUser();
+    router.start();
+    if (!isProtectedPage) {
+      router.go(Routes.Profile);
+    }
   } catch (error) {
-    router.go(Routes.Login);
+    router.start();
+    if (isProtectedPage) {
+      router.go(Routes.Home);
+    }
   }
 });
