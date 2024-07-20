@@ -3,7 +3,7 @@ import Block from '../../tools/block';
 import { tmp } from './home.tmp';
 import { links } from './home.links';
 
-export class Login extends Block {
+export class Home extends Block {
   constructor() {
     super({});
   }

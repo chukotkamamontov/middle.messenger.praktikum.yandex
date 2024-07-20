@@ -1,7 +1,8 @@
 import './assets/styles/styles.scss';
 import router from './tools/router';
-import { Login } from './pages/login/modules/login'
-import { Register } from './pages/login/modules/register';
+import { Login } from './pages/home/modules/login'
+import { Register } from './pages/home/modules/register';
+import { Home } from './pages/home';
 
 export enum Routes {
   Chats = '/messenger',
@@ -17,7 +18,7 @@ export enum Routes {
 
 window.addEventListener('DOMContentLoaded', async () => {
   router
-    .use(Routes.Home, Login)
+    .use(Routes.Home, Home)
     .use(Routes.Login, Login)
     .use(Routes.Register, Register)
 

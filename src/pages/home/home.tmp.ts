@@ -1,8 +1,9 @@
+import styles from './home.module.scss'
 
 export const tmp = `
-  <main>
+  <main class=${styles.home}>
     <section>
-      <h1>навигация по страницам</h1>
+      <h1>Временная навигация по страницам</h1>
       <nav>
           <ul>
               {{#each links}}
