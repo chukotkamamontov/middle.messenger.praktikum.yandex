@@ -3,6 +3,7 @@ import router from './tools/router';
 import { Login } from './pages/home/modules/login'
 import { Register } from './pages/home/modules/register';
 import { Home } from './pages/home';
+import { AuthController } from './controllers/AuthController';
 
 export enum Routes {
   Chats = '/messenger',
@@ -22,12 +23,18 @@ window.addEventListener('DOMContentLoaded', async () => {
     .use(Routes.Login, Login)
     .use(Routes.Register, Register)
 
+  let isProtectedPage = true;
 
   switch (window.location.pathname) {
     case Routes.Home:
     case Routes.Register:
+      isProtectedPage = false;
       break;
   }
 
-  router.go(Routes.Home);
+  try {
+    await AuthController.fetchUser();
+  } catch (error) {
+    router.go(Routes.Login);
+  }
 });

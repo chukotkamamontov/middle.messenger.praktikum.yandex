@@ -3,6 +3,8 @@ type Indexed<T = Record<string, unknown>> = {
 };
 
 export const merge = (lhs: Indexed, rhs: Indexed): Indexed => {
+  console.log('[merge] [lhs]', lhs);
+  console.log('[merge] [rhs]', rhs);
   for (const p in rhs) {
     if (!rhs.hasOwnProperty(p)) {
       continue;
