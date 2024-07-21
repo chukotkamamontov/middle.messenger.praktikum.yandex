@@ -154,15 +154,14 @@ export interface PasswordData {
 }
 
 export enum Routes {
-  Messenger = '/messenger',
-  EditPassword = '/edit-password',
-  EditProfile = '/settings',
-  Error = '/500',
   Home = '/',
   Login = '/login',
-  NotFound = '/404',
-  Profile = '/profile',
   Register = '/sign-up',
+  Messenger = '/messenger',
+  Profile = '/profile',
+  Settings = '/settings',
+  NotFound = '/404',
+  Error = '/500',
 }
 
 export interface MessageData {

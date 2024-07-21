@@ -4,18 +4,8 @@ import { Login } from './pages/home/modules/login'
 import { Register } from './pages/home/modules/register';
 import { Profile } from './pages/profile';
 import { AuthController } from './controllers/AuthController';
-
-export enum Routes {
-  Chats = '/messenger',
-  EditPassword = '/edit-password',
-  EditProfile = '/settings',
-  Error = '/500',
-  Home = '/',
-  Login = '/login',
-  NotFound = '/404',
-  Profile = '/profile',
-  Register = '/sign-up',
-}
+import { Routes } from './types';
+import { Settings } from './pages/settings';
 
 window.addEventListener('DOMContentLoaded', async () => {
   router
@@ -23,6 +13,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     .use(Routes.Login, Login)
     .use(Routes.Register, Register)
     .use(Routes.Profile, Profile)
+    .use(Routes.Settings, Settings)
 
   let isProtectedPage = true;
 

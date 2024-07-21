@@ -1,6 +1,6 @@
 import { AvatarProps } from './types';
 import Block from '../../tools/block';
-import { tmp } from './avatar.tmpl';
+import { tmp } from './avatar.tmp';
 import { withStore } from '../../hoc/withStore';
 import { State } from '../../tools/store';
 
