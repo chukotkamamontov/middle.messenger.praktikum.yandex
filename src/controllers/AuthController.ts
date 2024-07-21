@@ -1,12 +1,14 @@
 import authAPI from '../api/AuthAPI';
-import { SignInData, SignUpData, UserInfo } from '../types';
+import { Routes, SignInData, SignUpData, UserInfo } from '../types';
 import store from '../tools/store';
+import router from '../tools/router';
 
 export class AuthController {
   static async signin(data: SignInData) {
     try {
       await authAPI.signin(data);
       await this.fetchUser();
+      router.go(Routes.Messenger);
     } catch (error) {
       console.log(error, 'sign in error');
     }
@@ -16,6 +18,7 @@ export class AuthController {
     try {
       await authAPI.signup(data);
       await this.fetchUser();
+      router.go(Routes.Messenger);
     } catch (error) {
       console.log(error, 'sign up error');
     }
@@ -25,6 +28,7 @@ export class AuthController {
     try {
       await authAPI.logout();
       store.set('user', undefined);
+      router.go(Routes.Login);
     } catch (error) {
       console.log(error, 'log out error');
     }
