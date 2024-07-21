@@ -23,7 +23,12 @@ export const tmp = `
             </div>
           </div>
           
-          <div class=${styles.current}></div>
+          <div class=${styles.current}>
+
+            {{#if selectedChat}}
+              {{{messagesArea}}}
+              {{{messageForm}}}
+            {{/if}}
           </div>
       </div>
   </section>

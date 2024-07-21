@@ -10,6 +10,8 @@ import { Avatar } from '../../components/avatar';
 import { Input } from '../../components/input';
 import { Button } from '../../components/button';
 import { ChatItem } from './components/chatItem';
+import { MessagesArea } from './components/messagesArea';
+import { MessageForm } from './modules/messageForm';
 
 export class BaseMessenger extends Block {
   constructor() {
@@ -40,6 +42,22 @@ export class BaseMessenger extends Block {
         },
       },
     });
+    this.children.messageForm = new MessageForm({
+      inputs: [
+        new Input({
+          placeholder: 'Написать сообщение...',
+          name: 'message',
+          id: 'message',
+          type: 'text',
+        }),
+        new Input({
+          name: 'file',
+          id: 'file',
+          type: 'file',
+        }),
+      ],
+    });
+    this.children.messagesArea = new MessagesArea({});
   }
 
   componentDidUpdate() {

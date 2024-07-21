@@ -23,14 +23,14 @@ export const tmp = `
         >
       {{/if}}
       </div>
-      <div class=${styles.info}>
-          <span class=${styles.name}>{{chat.title}}</span>
-          <span class=${styles.message}>{{chat.last_message.content}}</span>
+      <div>
+          <span>{{chat.title}}</span>
+          <span>{{chat.last_message.content}}</span>
       </div>
-      <div class=${styles.extra}>
-          <span class=${styles.time}>{{chat.last_message.time}}</span>
+      <div>
+          <span>{{chat.last_message.time}}</span>
           {{#if chat.unread_count}}
-            <span class=${styles.numberOfMessages}>{{chat.unread_count}}</span>
+            <span>{{chat.unread_count}}</span>
           {{/if}}
       </div>
     </div>

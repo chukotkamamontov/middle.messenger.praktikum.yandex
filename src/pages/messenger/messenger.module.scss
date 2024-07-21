@@ -1,5 +1,5 @@
 .messenger {
-  height: 100vh;
+  // height: 100vh;
   display: flex;
   flex-direction: column;
   .panel {
@@ -37,7 +37,6 @@
         flex: 1;
         flex-direction: column;
         padding-bottom: 20px;
-        background-color: sandybrown;
       }
     }
   }

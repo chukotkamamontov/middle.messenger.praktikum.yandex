@@ -1,0 +1,29 @@
+.message {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+  width: fit-content;
+  max-width: 70%;
+  padding: 16px 16px 16px 24px;
+  background-color: var(--color-background-secondary);
+  border-radius: 0 8px 8px;
+
+  .time {
+    font-size: calc(12rem / 16);
+    color: var(--color-label);
+  }
+
+  .text {
+    font-size: 1rem;
+  }
+}
+
+.sent {
+  align-self: flex-end;
+  background-color: var(--color-accent);
+  border-radius: 8px 8px 0;
+
+  .time {
+    color: #96C0FF;
+  }
+}

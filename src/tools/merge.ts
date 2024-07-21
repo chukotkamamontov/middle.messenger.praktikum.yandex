@@ -2,24 +2,24 @@ type Indexed<T = Record<string, unknown>> = {
   [key in string]: T;
 };
 
-export const merge = (lhs: Indexed, rhs: Indexed): Indexed => {
-  console.log('[merge] [lhs]', lhs);
-  console.log('[merge] [rhs]', rhs);
-  for (const p in rhs) {
-    if (!rhs.hasOwnProperty(p)) {
+export const merge = (left: Indexed, right: Indexed): Indexed => {
+  console.log('[merge] [lhs]', left);
+  console.log('[merge] [rhs]', right);
+  for (const p in right) {
+    if (!right.hasOwnProperty(p)) {
       continue;
     }
 
     try {
-      if (rhs[p].constructor === Object) {
-        rhs[p] = merge(lhs[p] as Indexed, rhs[p] as Indexed);
+      if (right[p].constructor === Object) {
+        right[p] = merge(left[p] as Indexed, right[p] as Indexed);
       } else {
-        lhs[p] = rhs[p];
+        left[p] = right[p];
       }
     } catch (e) {
-      lhs[p] = rhs[p];
+      left[p] = right[p];
     }
   }
 
-  return lhs;
+  return left;
 };
