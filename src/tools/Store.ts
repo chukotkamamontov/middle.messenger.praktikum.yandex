@@ -1,8 +1,12 @@
 import EventBus from './EventBus';
-import { UserInfo } from '../types';
+import { Chat, MessageData, UserInfo } from '../types';
 import { set } from './set';
 
 export interface State {
+  chats?: Chat[];
+  currentMessages?: MessageData[];
+  messages?: Record<number, MessageData[]>;
+  selectedChat?: Chat[] | null;
   user?: UserInfo;
 }
 

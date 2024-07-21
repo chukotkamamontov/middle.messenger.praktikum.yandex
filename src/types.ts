@@ -202,3 +202,7 @@ export interface Chat {
   title: string;
   unread_count: number;
 }
+
+export interface ChatMember extends Omit<UserInfo, 'phone' | 'email'> {
+  role?: string;
+}

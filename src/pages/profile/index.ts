@@ -19,14 +19,10 @@ export class BaseProfile extends Block {
       size: '130',
     });
     this.children.links = [
-      // new Link({
-      //   to: Routes.EditProfile,
-      //   text: 'Изменить профайл',
-      // }),
-      // new Link({
-      //   to: Routes.EditPassword,
-      //   text: 'Изменить пароль',
-      // }),
+      new Link({
+        to: Routes.Settings,
+        text: 'Изменить профайл',
+      }),
       new Link({
         to: Routes.Messenger,
         text: 'Перейти в мессенджер',

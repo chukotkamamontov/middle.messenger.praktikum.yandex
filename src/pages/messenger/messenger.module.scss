@@ -1,0 +1,117 @@
+.messenger {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  .panel {
+    height: 10%;
+    display: flex;
+    align-items: center;
+    padding-left: 24px;
+    background-color: saddlebrown;
+  }
+  .section {
+    height: 90%;
+    color: cadetblue;
+    .container {
+      display: flex;
+      height: 100%;
+      .sidebar {
+        display: flex;
+        max-width: 320px;
+        flex-direction: column;
+        justify-content: space-between;
+        overflow-y: auto;
+        background-color: var(--bg-settings-page);
+        .searchBlock {
+          padding: 12px;
+          border-bottom: 1px solid var(--color-second);
+        }
+        .createChatButtonBlock {
+          padding: 12px;
+          text-align: center;
+        }
+      }
+      .current {
+        height: 100%;
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        padding-bottom: 20px;
+        background-color: sandybrown;
+      }
+    }
+  }
+}
+
+
+
+
+
+.top {
+  padding: 16px 32px;
+  background-color: var(--color-background-secondary);
+}
+
+.topInfo {
+  position: relative;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+
+
+.option {
+  font-size: 1rem;
+  color: var(--color-text);
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+}
+
+.talkerName {
+  font-size: 1rem;
+}
+
+.status {
+  font-size: 0.875rem;
+  font-weight: 300;
+  color: var(--color-label);
+}
+
+.instruction {
+  display: flex;
+  flex-direction: column;
+  background-color: seagreen;
+  gap: 24px;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 24px 32px 42px;
+}
+
+.messages {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Стили панели чатов */
+
+.chats {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-top: 10px;
+}
+
+
+
+
+
+
+.avatar {
+  flex-shrink: 0;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  object-fit: cover;
+}

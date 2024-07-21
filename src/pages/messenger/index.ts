@@ -1,52 +1,76 @@
+import { tmp } from './messenger.tmp';
 import Block from '../../tools/block';
+import { withStore } from '../../hoc/withStore';
+import { MessengerController } from '../../controllers/MessengerController';
+import { MessagesController } from '../../controllers/MessagesController';
+import { State } from '../../tools/store';
+import { Chat, Routes } from '../../types';
 import { Link } from '../../components/link';
-import { tmp } from './home.tmp';
-import { LeftPanel } from './modules/leftPanel';
-import { Lenta } from './modules/lenta';
+import { Avatar } from '../../components/avatar';
+import { Input } from '../../components/input';
+import { Button } from '../../components/button';
+import { ChatItem } from './components/chatItem';
 
-const links = [
-  {
-    text: 'SignIn',
-    to: '/signin',
-  },
-  {
-    text: 'SignUp',
-    to: '/signup',
-  },
-  {
-    text: 'Settings',
-    to: '/settings',
-  },
-  {
-    text: 'Profile',
-    to: '/profile',
-  },
-  {
-    text: '404',
-    to: '/404',
-  },
-  {
-    text: '500',
-    to: '/500',
-  },
-];
-
-export class HomePage extends Block {
+export class BaseMessenger extends Block {
   constructor() {
-    super('div', {});
+    super({});
   }
 
   init() {
-    this.children.links = links.map((link) => new Link(link));
-    this.children.leftPanel = new LeftPanel({
-      data: 'LEFT PANEL WILL BE HERE',
+    this.children.avatarLink = new Link({
+      to: Routes.Profile,
+      content: new Avatar({
+        size: '48',
+      }),
     });
-    this.children.lenta = new Lenta({
-      data: 'LENTA WILL BE HERE',
+    this.children.searchInput = new Input({
+      placeholder: 'Поиск чата...',
+      id: 'search',
+      type: 'text',
+      name: 'search',
     });
+    this.children.createChatButton = new Button({
+      text: 'Создать чат',
+      type: 'button',
+      events: {
+        click: () => {
+          this.setProps({
+            isCreateChatPopupOpen: true,
+          });
+        },
+      },
+    });
+  }
+
+  componentDidUpdate() {
+    if (this.props.chats) {
+      this.children.chats = this.props.chats.map(
+        (chat: Chat) => new ChatItem({
+          chat,
+          onClick: (chatId: number) => {
+            MessengerController.selectChat(chatId);
+            MessagesController.findMessages(chatId);
+            this.setProps({ optionsVisible: false });
+          },
+        }),
+      );
+    }
+
+    return true;
+  }
+
+  componentDidMount() {
+    MessengerController.getChatsList();
   }
 
   render() {
     return this.compile(tmp);
   }
 }
+
+const mapStateToProps = (state: State) => ({
+  chats: state.chats,
+  selectedChat: state.selectedChat?.[0],
+});
+
+export const Messenger = withStore(mapStateToProps)(BaseMessenger);

@@ -6,6 +6,7 @@ import { Profile } from './pages/profile';
 import { AuthController } from './controllers/AuthController';
 import { Routes } from './types';
 import { Settings } from './pages/settings';
+import { Messenger } from './pages/messenger';
 
 window.addEventListener('DOMContentLoaded', async () => {
   router
@@ -14,6 +15,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     .use(Routes.Register, Register)
     .use(Routes.Profile, Profile)
     .use(Routes.Settings, Settings)
+    .use(Routes.Messenger, Messenger)
 
   let isProtectedPage = true;
 
