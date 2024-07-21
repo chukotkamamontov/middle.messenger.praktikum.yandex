@@ -12,6 +12,10 @@ import { Button } from '../../components/button';
 import { ChatItem } from './components/chatItem';
 import { MessagesArea } from './components/messagesArea';
 import { MessageForm } from './modules/messageForm';
+import { createChatModal } from './modules/createChatModal';
+import { inputBlock } from '../../blocks/inputBlock';
+import { CreateChatForm } from './modules/createChatForm';
+import { CloseModalButton } from '../../components/closeModalButton';
 
 export class BaseMessenger extends Block {
   constructor() {
@@ -58,6 +62,37 @@ export class BaseMessenger extends Block {
       ],
     });
     this.children.messagesArea = new MessagesArea({});
+    
+    this.children.createChatPopup = new createChatModal({
+      form: new CreateChatForm({
+        inputs: [
+          new inputBlock({
+            label: 'Название чата',
+            name: 'new-chat',
+            id: 'new-chat',
+            type: 'text',
+          }),
+        ],
+        submitButton: new Button({
+          type: 'submit',
+          text: 'Создать',
+        }),
+        onSubmit: () => {
+          this.setProps({
+            isCreateChatPopupOpen: false,
+          });
+        },
+      }),
+      button: new CloseModalButton({
+        events: {
+          click: () => {
+            this.setProps({
+              isCreateChatPopupOpen: false,
+            });
+          },
+        },
+      }),
+    });
   }
 
   componentDidUpdate() {

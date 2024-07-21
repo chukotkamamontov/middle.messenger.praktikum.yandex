@@ -1,4 +1,5 @@
 import styles from './messenger.module.scss';
+import chat from '../../assets/images/defaultAvatar.jpg';
 
 export const tmp = `
   <main class=${styles.messenger}>
@@ -24,6 +25,10 @@ export const tmp = `
           </div>
           
           <div class=${styles.current}>
+
+            {{#if isCreateChatPopupOpen}}
+              {{{createChatPopup}}}
+            {{/if}}
 
             {{#if selectedChat}}
               {{{messagesArea}}}
