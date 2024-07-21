@@ -16,6 +16,25 @@ import { createChatModal } from './modules/createChatModal';
 import { inputBlock } from '../../blocks/inputBlock';
 import { CreateChatForm } from './modules/createChatForm';
 import { CloseModalButton } from '../../components/closeModalButton';
+import { OptionsButton } from '../../components/optionsButton';
+import { ChatOptions } from './modules/chatOptions';
+
+import { ManageUserForm } from './modules/manageUserForm';
+import { AddUserModal } from './modules/addUserModal';
+import { DeleteUserModal } from './modules/deleteUserModal';
+import { ChangeChatAvatarModal } from './modules/changeChatAvatarModal';
+import { ChangeAvatarForm } from './modules/changeAvatarForm';
+import { FileInput } from '../../components/fileInput';
+
+// import { Button } from '../../components/button';
+// import { ClosePopupButton } from '../../components/close-popup-button/index.ts';
+// import { DeleteUserPopup } from '../../components/popups/delete-user-popup/index.ts';
+// import { AddUserPopup } from '../../components/popups/add-user-popup/index.ts';
+
+// Modules
+// import { ChatMessageForm } from './modules/chat-message-form/index.ts';
+// import { ChangeAvatarForm } from './modules/change-avatar-form';
+// import { FileInput } from '../../components/file-input';
 
 export class BaseMessenger extends Block {
   constructor() {
@@ -63,7 +82,7 @@ export class BaseMessenger extends Block {
     });
     this.children.messagesArea = new MessagesArea({});
     
-    this.children.createChatPopup = new createChatModal({
+    this.children.createChatModal = new createChatModal({
       form: new CreateChatForm({
         inputs: [
           new inputBlock({
@@ -93,6 +112,168 @@ export class BaseMessenger extends Block {
         },
       }),
     });
+
+    this.children.optionsButton = new OptionsButton({
+      onClick: () => this.setProps({ optionsVisible: !this.props.optionsVisible }),
+    });
+
+    this.children.options = new ChatOptions({
+      buttons: [
+        new Button({
+          text: 'Добавить пользователя',
+          type: 'button',
+          events: {
+            click: () => {
+              this.setProps({
+                isAddUserPopupOpen: true,
+              });
+            },
+          },
+        }),
+        new Button({
+          text: 'Удалить пользователя',
+          type: 'button',
+          events: {
+            click: () => {
+              this.setProps({
+                isDeleteUserPopupOpen: true,
+              });
+            },
+          },
+        }),
+        new Button({
+          text: 'Удалить чат',
+          type: 'button',
+          events: {
+            click: () => {
+              MessengerController.deleteChat(this.props.selectedChat.id);
+              this.setProps({
+                optionsVisible: false,
+              });
+            },
+          },
+        }),
+        new Button({
+          text: 'Сменить фото чата',
+          type: 'button',
+          events: {
+            click: () => {
+              // ChatsController.deleteChat(this.props.selectedChat.id);
+              this.setProps({
+                isChatAvatarPopupOpen: true,
+                optionsVisible: false,
+              });
+            },
+          },
+        }),
+      ],
+    });
+
+    this.children.addUserModal = new AddUserModal({
+      button: new CloseModalButton({
+        events: {
+          click: () => {
+            this.setProps({
+              isAddUserPopupOpen: false,
+              optionsVisible: false,
+            });
+          },
+        },
+      }),
+      form: new ManageUserForm({
+        inputs: [
+          new inputBlock({
+            label: 'ID пользователя или пользователей',
+            name: 'userId',
+            id: 'userId',
+            type: 'text',
+          }),
+        ],
+        submitButton: new Button({
+          type: 'submit',
+          text: 'Добавить',
+        }),
+        onSubmit: (chatId: number, userId: number[]) => {
+          MessengerController.addUserToChat(chatId, userId);
+        },
+        onClose: () => {
+          this.setProps({
+            isAddUserPopupOpen: false,
+            optionsVisible: false,
+          });
+        },
+      }),
+    });
+
+    this.children.deleteUserModal = new DeleteUserModal({
+      button: new CloseModalButton({
+        events: {
+          click: () => {
+            this.setProps({
+              isDeleteUserPopupOpen: false,
+              optionsVisible: false,
+            });
+          },
+        },
+      }),
+      form: new ManageUserForm({
+        inputs: [
+          new inputBlock({
+            label: 'ID пользователя или пользователей',
+            name: 'userId',
+            id: 'userId',
+            type: 'text',
+          }),
+        ],
+        submitButton: new Button({
+          type: 'submit',
+          text: 'Удалить',
+        }),
+        onSubmit: (chatId: number, userId: number[]) => {
+          MessengerController.deleteUserFromChat(chatId, userId);
+        },
+        onClose: () => {
+          this.setProps({
+            isDeleteUserPopupOpen: false,
+            optionsVisible: false,
+          });
+        },
+      }),
+    });
+
+    this.children.changeChatAvatarPopup = new ChangeChatAvatarModal({
+      button: new CloseModalButton({
+        events: {
+          click: () => {
+            this.setProps({
+              isChatAvatarPopupOpen: false,
+              optionsVisible: false,
+            });
+          },
+        },
+      }),
+      form: new ChangeAvatarForm({
+        inputs: [
+          new FileInput({
+            onChange: (event: any) => {
+              const target = event.target as HTMLInputElement;
+              if (target.files) {
+                const file = target.files[0];
+                const formData = new FormData();
+                formData.append('chatId', this.props.selectedChat.id);
+                formData.append('avatar', file);
+                MessengerController.editChatAvatar(formData);
+                this.setProps({
+                  isChatAvatarPopupOpen: false,
+                  optionsVisible: false,
+                });
+              }
+            },
+          }),
+        ],
+      }),
+    });
+
   }
 
   componentDidUpdate() {

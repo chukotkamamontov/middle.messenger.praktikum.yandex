@@ -25,9 +25,41 @@ export const tmp = `
           </div>
           
           <div class=${styles.current}>
+            {{#if selectedChat}}
+                <div class=${styles.top}>
+                  <div class=${styles.topInfo}>
+                      <span class=${styles.talkerName}>{{selectedChat.title}}</span>
+                      <span class=${styles.status}>В сети</span>
+                      {{{optionsButton}}}
+                      {{#if optionsVisible}}
+                        {{{options}}}
+                      {{/if}}
+                  </div>
+                </div>
+            {{/if}}
+
+            {{#unless selectedChat}}
+              <div class=${styles.instruction}>
+              <p>Выбери чат, чтобы отправить сообщение</p>
+              <img width="120" height="120" src=${chat} alt="">
+              <p>...или создай новый</p>
+          </div>
+            {{/unless}}
 
             {{#if isCreateChatPopupOpen}}
-              {{{createChatPopup}}}
+              {{{createChatModal}}}
+            {{/if}}
+
+            {{#if isAddUserPopupOpen}}
+              {{{addUserModal}}}
+            {{/if}}
+
+            {{#if isDeleteUserPopupOpen}}
+              {{{deleteUserModal}}}
+            {{/if}}
+
+            {{#if isChatAvatarPopupOpen}}
+              {{{changeChatAvatarPopup}}}
             {{/if}}
 
             {{#if selectedChat}}
