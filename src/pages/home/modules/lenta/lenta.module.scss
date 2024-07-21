@@ -1,11 +1,10 @@
-@import '../../../../assets/styles/styles.css';
+@import '../../../../assets/styles/styles';
 
 .lenta {
   display: flex;
   flex-direction: column;
+  align-self: stretch;
   justify-content: space-between;
-  flex: 1;
   padding: 20px;
   background-color: var(--bg-lenta);
-  align-self: stretch;
 }

@@ -13,7 +13,13 @@ https://www.figma.com/file/Fp2QkeMw5vPa1ksFa75jbP/YA_PRAKTIKUM_MESSANGER?type=de
 ## Netlify
 
 ```
+sprint_1 
 https://merry-begonia-2c8cb4.netlify.app
+```
+
+```
+sprint_2 
+https://papaya-mousse-0dc46c.netlify.app/
 ```
 
 ## Команды

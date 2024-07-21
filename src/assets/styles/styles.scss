@@ -1,0 +1,57 @@
+:root {
+  /* text */
+  --color-default: #fff;
+
+  /* background */
+  --bg-black: #000;
+  --bg-default-page: coral; 
+  --bg-signin-page: #7BD0DA;
+  --bg-signup-page: #9BC752;
+  --bg-settings-page:#424242;;
+  --bg-error-page: tomato;
+  --bg-left-panel: aqua;
+  --bg-lenta: #8BDA8B;
+  font-family: monospace, Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  line-height: 1.5;
+  font-synthesis: none;
+  text-rendering: optimizelegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #fff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+
+a:hover {
+  color: #535bf2;
+}
+
+h1 {
+  display: inline;
+}
+
+ul {
+padding: 0;
+margin: 0;
+list-style: none;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+}
+
+#app {
+  width: 100%;
+  background-color: #57606a;
+}
+

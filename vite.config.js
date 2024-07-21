@@ -1,5 +1,4 @@
 import { defineConfig } from 'vite';
-import handlebars from './vite-plugin-handlebars-precompile';
 import { resolve } from 'path';
 
 export default defineConfig({
@@ -9,11 +8,5 @@ export default defineConfig({
   },
   build: {
     outDir: resolve(__dirname, 'dist'),
-  },
-  plugins: [handlebars()],
-  resolve: {
-    alias: {
-      src: '/src',
-    },
   },
 });
