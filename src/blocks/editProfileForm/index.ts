@@ -10,7 +10,8 @@ export class EditProfileForm extends Block {
     super({
       ...props,
       events: {
-        submit: (event: any) => {
+        submit: (event: SubmitEvent) => {
+          console.log('[EditProfileForm]: ', event)
           event.preventDefault();
           const data = validateFormSubmit(event.target as HTMLFormElement, this.children.inputs as Block[]);
           if (data) {

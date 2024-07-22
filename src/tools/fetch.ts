@@ -1,4 +1,4 @@
-import { queryStringify } from '../utils/fetchUtils';
+import { queryStringify, queryStringifyParams } from '../utils/fetchUtils';
 
 enum METHODS {
   DELETE = 'DELETE',
@@ -8,11 +8,10 @@ enum METHODS {
 }
 
 type Options = {
-  data?: any;
-  headers?: {
-    [headerName: string]: string;
-  };
-  method: METHODS;
+  data?: queryStringifyParams;
+  method: string;
+  headers?: Record<string, string>;
+  body?: string;
   timeout?: number;
 };
 
@@ -67,6 +66,7 @@ export class Fetch {
 
   request<Response>(url: string, options: Options = { method: METHODS.GET }, timeout: number = 5000): Promise<Response> {
     const { data, headers = {}, method } = options;
+    console.log('[request]: ', data)
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
       const isGet = method === METHODS.GET;

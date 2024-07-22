@@ -13,7 +13,7 @@ class MessengerAPI extends BaseAPI {
     });
   }
 
-  getChats(data: Record<string, any>) {
+  getChats(data: Record<string, number | string>) {
     return this.http.get('/', { data });
   }
 

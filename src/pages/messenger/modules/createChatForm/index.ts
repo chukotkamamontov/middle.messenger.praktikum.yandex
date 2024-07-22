@@ -9,7 +9,7 @@ export class CreateChatForm extends Block {
     super({
       ...props,
       events: {
-        submit: (event: any) => {
+        submit: (event: SubmitEvent) => {
           event.preventDefault();
           const data = validateFormSubmit(event.target as HTMLFormElement, this.children.inputs as Block[]);
 

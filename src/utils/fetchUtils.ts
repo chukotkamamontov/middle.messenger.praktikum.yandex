@@ -1,4 +1,4 @@
-interface queryStringifyParams {
+export interface queryStringifyParams {
   data: {
     [key: string]: unknown;
   };

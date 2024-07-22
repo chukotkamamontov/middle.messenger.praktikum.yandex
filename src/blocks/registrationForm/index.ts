@@ -7,7 +7,7 @@ export class RegistrationForm extends Block {
     super({
       ...props,
       events: {
-        submit: (event: any) => {
+        submit: (event: SubmitEvent) => {
           event.preventDefault();
         },
       },

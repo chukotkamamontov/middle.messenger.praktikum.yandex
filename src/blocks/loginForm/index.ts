@@ -9,7 +9,7 @@ export class LoginForm extends Block {
     super({
       ...props,
       events: {
-        submit: (event: any) => {
+        submit: (event: SubmitEvent) => {
           event.preventDefault();
           const data: any = validateFormSubmit(event.target as HTMLFormElement, this.children.inputs as Block[]);
           if (data) {

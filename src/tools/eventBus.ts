@@ -3,7 +3,7 @@ type MapInterface<P> = P[keyof P];
 
 export default class EventBus<
   E extends Record<string, string> = Record<string, string>,
-  Args extends Record<MapInterface<E>, unknown[]> = Record<string, any[]>
+  Args extends Record<MapInterface<E>, unknown[]> = Record<string, unknown[]>
 > {
   private readonly listeners: {
     [K in MapInterface<E>]?: Handler<Args[K]>[];

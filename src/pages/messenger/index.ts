@@ -244,7 +244,7 @@ export class BaseMessenger extends Block {
       form: new ChangeAvatarForm({
         inputs: [
           new FileInput({
-            onChange: (event: any) => {
+            onChange: (event: SubmitEvent) => {
               const target = event.target as HTMLInputElement;
               if (target.files) {
                 const file = target.files[0];
