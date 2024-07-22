@@ -14,7 +14,7 @@ type Indexed<T = Record<string, unknown>> = {
 };
 
 export const set = (object: Indexed | unknown, path: string, value: unknown): Indexed | unknown => {
-  console.log('[set] [value]: ', value)
+  console.log('[set] [value]: ', value);
   if (typeof object !== 'object' || object === null) {
     return object;
   }

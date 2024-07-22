@@ -3,7 +3,7 @@ import Block from '../tools/block';
 import { isEqual } from '../utils/storeUtils';
 
 export const withStore = (mapStateToProps: (state: State) => any) => (Component: Block) => {
-  console.log('[Component]: ', Component)
+  console.log('[Component]: ', Component);
   return class extends Component {
     constructor(props: any) {
       let state = mapStateToProps(Store.getState());
@@ -16,5 +16,5 @@ export const withStore = (mapStateToProps: (state: State) => any) => (Component:
         state = propsFromState;
       });
     }
-  }
-}
+  };
+};

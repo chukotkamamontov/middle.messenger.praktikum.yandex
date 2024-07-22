@@ -66,7 +66,7 @@ export class Fetch {
 
   request<Response>(url: string, options: Options = { method: METHODS.GET }, timeout: number = 5000): Promise<Response> {
     const { data, headers = {}, method } = options;
-    console.log('[request]: ', data)
+    console.log('[request]: ', data);
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
       const isGet = method === METHODS.GET;
