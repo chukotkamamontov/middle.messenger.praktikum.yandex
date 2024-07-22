@@ -1,14 +1,14 @@
+import Block from '../../tools/block';
+import Store from '../../tools/store';
+import { tmp } from './settings.tmp';
+import { fields } from './settings.fields';
 import { Button } from '../../components/button';
 import { Avatar } from '../../components/avatar';
 import { AvatarInput } from '../../components/avatarInput';
 import { InputBlock } from '../../blocks/inputBlock';
 import { EditProfileForm } from '../../blocks/editProfileForm';
-import Block from '../../tools/block';
-import { fields } from './settings.fields';
-import { tmp } from './settings.tmp';
 import { UserController } from '../../controllers/UserController';
 import { UserInfo, InputBlockProps } from '../../types';
-import Store from '../../tools/store';
 
 export class Settings extends Block {
   constructor() {

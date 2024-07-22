@@ -13,7 +13,7 @@
         // "max-len": [2, 100],
         "max-params": [2, 3],
         // "@typescript-eslint/no-unused-vars": 2,
-        "@typescript-eslint/no-explicit-any": "off",
+        // "@typescript-eslint/no-explicit-any": "off",
         "@typescript-eslint/no-unused-vars": "off",
         "import/extensions": "off",
         "import/prefer-default-export": "off",
