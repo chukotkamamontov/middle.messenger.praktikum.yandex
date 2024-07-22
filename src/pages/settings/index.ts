@@ -8,7 +8,7 @@ import { fields } from './settings.fields';
 import { tmp } from './settings.tmp';
 import { UserController } from '../../controllers/UserController';
 import { UserInfo, InputBlockProps } from '../../types';
-import Store from '../../tools/Store';
+import Store from '../../tools/store';
 
 export class Settings extends Block {
   constructor() {
