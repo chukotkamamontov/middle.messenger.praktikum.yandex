@@ -1,6 +1,6 @@
 import Block from '../../../../tools/block';
 import { LoginForm } from '../../../../blocks/loginForm';
-import { inputBlock } from '../../../../blocks/inputBlock';
+import { InputBlock } from '../../../../blocks/inputBlock';
 import { Link } from '../../../../components/link';
 import { Button } from '../../../../components/button';
 import { tmp } from './login.tmp';
@@ -15,13 +15,13 @@ export class Login extends Block {
   init() {
     this.children.loginForm = new LoginForm({
       inputs: [
-        new inputBlock({
+        new InputBlock({
           id: 'login',
           name: 'login',
           type: 'text',
           label: 'Логин:',
         }),
-        new inputBlock({
+        new InputBlock({
           id: 'password',
           name: 'password',
           type: 'password',

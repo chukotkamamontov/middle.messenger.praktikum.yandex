@@ -1,6 +1,6 @@
 import authAPI from '../api/AuthAPI';
 import { Routes, SignInData, SignUpData, UserInfo } from '../types';
-import store from '../tools/store';
+import Store from '../tools/store';
 import router from '../tools/router';
 
 export class AuthController {
@@ -27,7 +27,7 @@ export class AuthController {
   static async logout() {
     try {
       await authAPI.logout();
-      store.set('user', undefined);
+      Store.set('user', undefined);
       router.go(Routes.Login);
     } catch (error) {
       console.log(error, 'log out error');
@@ -36,6 +36,6 @@ export class AuthController {
 
   static async fetchUser() {
     const user = await authAPI.getUserInfo();
-    store.set('user', user as UserInfo);
+    Store.set('user', user as UserInfo);
   }
 }

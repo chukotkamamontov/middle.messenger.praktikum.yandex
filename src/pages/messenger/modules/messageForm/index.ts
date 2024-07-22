@@ -3,7 +3,7 @@ import { tmp } from './messageForm.tmp';
 import { MessageFormProps } from './types';
 import { validateFormSubmit } from '../../../../utils/formUtils';
 import { MessagesController } from '../../../../controllers/MessagesController';
-import store from '../../../../tools/store';
+import Store from '../../../../tools/store';
 
 export class MessageForm extends Block {
   constructor(props: MessageFormProps) {
@@ -16,7 +16,7 @@ export class MessageForm extends Block {
           const data = validateFormSubmit(target, this.children.input as Block[]);
           if (data) {
             const { message } = data;
-            const chatId = store.getState().selectedChat?.[0].id;
+            const chatId = Store.getState().selectedChat?.[0].id;
             if (chatId) {
               MessagesController.sendMessage(chatId, message);
               target.reset();

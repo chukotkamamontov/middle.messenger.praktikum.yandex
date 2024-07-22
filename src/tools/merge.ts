@@ -3,8 +3,8 @@ type Indexed<T = Record<string, unknown>> = {
 };
 
 export const merge = (left: Indexed, right: Indexed): Indexed => {
-  console.log('[merge] [lhs]', left);
-  console.log('[merge] [rhs]', right);
+  // console.log('[merge] [lhs]', left);
+  // console.log('[merge] [rhs]', right);
   for (const p in right) {
     if (!right.hasOwnProperty(p)) {
       continue;

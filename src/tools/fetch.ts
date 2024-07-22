@@ -20,7 +20,7 @@ type OptionsWithoutMethod = Omit<Options, 'method'>;
 
 type HTTPMethod = (url: string, options?: OptionsWithoutMethod) => Promise<any>;
 
-export class fetch {
+export class Fetch {
   protected BASE_URL = 'https://ya-praktikum.tech/api/v2';
 
   protected endpoint: string;

@@ -1,8 +1,7 @@
 import Block from '../../tools/block';
 import { tmp } from './loginForm.tmp';
 import { validateFormSubmit } from '../../utils/formUtils';
-import { LoginFormProps } from '../../types';
-import { SignInData } from '../../types';
+import { LoginFormProps, SignInData } from '../../types';
 import { AuthController } from '../../controllers/AuthController';
 
 export class LoginForm extends Block {

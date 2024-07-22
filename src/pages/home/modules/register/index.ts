@@ -2,7 +2,7 @@ import { tmp } from './register.tmp';
 import Block from '../../../../tools/block';
 import { Link } from '../../../../components/link';
 import { Button } from '../../../../components/button';
-import { inputBlock } from '../../../../blocks/inputBlock'
+import { InputBlock } from '../../../../blocks/inputBlock';
 import { InputBlockProps, Routes } from '../../../../types';
 import { RegistrationForm } from '../../../../blocks/registrationForm';
 import { fields } from './register.fields';
@@ -15,7 +15,7 @@ export class Register extends Block {
 
   init() {
     this.children.registrationForm = new RegistrationForm({
-      inputs: fields.map((field) => new inputBlock(field as InputBlockProps)),
+      inputs: fields.map((field) => new InputBlock(field as InputBlockProps)),
       submitButton: new Button({
         type: 'submit',
         text: 'Зарегистрироваться',

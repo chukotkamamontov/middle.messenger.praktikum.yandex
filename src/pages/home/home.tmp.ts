@@ -1,4 +1,4 @@
-import styles from './home.module.scss'
+import styles from './home.module.scss';
 
 export const tmp = `
   <main class=${styles.home}>

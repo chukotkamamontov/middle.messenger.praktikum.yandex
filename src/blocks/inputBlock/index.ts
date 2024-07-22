@@ -5,7 +5,7 @@ import { InputBlockProps } from '../../types';
 import { validate } from '../../utils/formUtils';
 import { tmp } from './inputBlock.tmp';
 
-export class inputBlock extends Block {
+export class InputBlock extends Block {
   constructor(props: InputBlockProps) {
     super(props);
   }

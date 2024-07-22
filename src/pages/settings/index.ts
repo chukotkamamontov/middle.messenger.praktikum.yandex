@@ -1,15 +1,14 @@
 import { Button } from '../../components/button';
 import { Avatar } from '../../components/avatar';
 import { AvatarInput } from '../../components/avatarInput';
-import { inputBlock } from '../../blocks/inputBlock';
+import { InputBlock } from '../../blocks/inputBlock';
 import { EditProfileForm } from '../../blocks/editProfileForm';
 import Block from '../../tools/block';
-import { InputBlockProps } from '../../types';
 import { fields } from './settings.fields';
 import { tmp } from './settings.tmp';
 import { UserController } from '../../controllers/UserController';
-import store from '../../tools/store';
-import { UserInfo } from '../../types';
+import { UserInfo, InputBlockProps } from '../../types';
+import Store from '../../tools/Store';
 
 export class Settings extends Block {
   constructor() {
@@ -38,14 +37,14 @@ export class Settings extends Block {
       },
     });
     const mappedData = fields.map((field) => {
-      const entry = Object.entries(store.getState().user as UserInfo).find((entry) => entry[0] === field.id);
+      const entry = Object.entries(Store.getState().user as UserInfo).find((entry) => entry[0] === field.id);
       return {
         ...field,
         value: entry ? entry[1] : '',
       };
     });
     this.children.editProfileForm = new EditProfileForm({
-      inputs: mappedData.map((field) => new inputBlock(field as InputBlockProps)),
+      inputs: mappedData.map((field) => new InputBlock(field as InputBlockProps)),
       submitButton: new Button({
         type: 'submit',
         text: 'Сохранить',

@@ -1,5 +1,5 @@
 import chatsAPI from '../api/ChatsAPI';
-import store from '../tools/store';
+import Store from '../tools/store';
 import { Chat, ChatMember } from '../types';
 import { MessagesController } from './MessagesController';
 
@@ -20,7 +20,7 @@ export class ChatsController {
         const { token } = await this.getToken(chat.id);
         await MessagesController.connect(chat.id, token);
       });
-      store.set('chats', chats);
+      Store.set('chats', chats);
     } catch (error) {
       console.log(error, 'get chats list error');
     }
@@ -45,8 +45,8 @@ export class ChatsController {
   }
 
   static selectChat(chatId: number) {
-    const target = store.getState().chats?.find((chat) => chat.id === chatId);
-    store.set('selectedChat', [target]);
+    const target = Store.getState().chats?.find((chat) => chat.id === chatId);
+    Store.set('selectedChat', [target]);
     this.fetchChatUsers(chatId);
   }
 
@@ -54,9 +54,9 @@ export class ChatsController {
     try {
       const chatMembers: ChatMember[] = await chatsAPI.getChatUsers(chatId);
       const nonAdminMembers = chatMembers.filter((user) => user.role !== 'admin');
-      store.set('selectedChat', [
+      Store.set('selectedChat', [
         {
-          ...store.getState().selectedChat?.[0],
+          ...Store.getState().selectedChat?.[0],
           members: nonAdminMembers,
         },
       ]);
@@ -68,7 +68,7 @@ export class ChatsController {
   static async deleteChat(chatId: number) {
     try {
       await chatsAPI.delete(chatId);
-      store.set('selectedChat', undefined);
+      Store.set('selectedChat', undefined);
       await this.getChatsList();
     } catch (error) {
       console.log(error, 'delete the chat error');
@@ -80,7 +80,7 @@ export class ChatsController {
       const response = await chatsAPI.changeChatAvatar(data);
       const { avatar, id } = response;
 
-      const { chats, selectedChat } = store.getState();
+      const { chats, selectedChat } = Store.getState();
       const updatedChats = chats?.map((chat) => (chat.id !== id
         ? chat
         : {
@@ -89,9 +89,9 @@ export class ChatsController {
         }));
 
       if (updatedChats) {
-        store.set('chats', updatedChats);
+        Store.set('chats', updatedChats);
       }
-      store.set('selectedChat', [
+      Store.set('selectedChat', [
         {
           ...selectedChat?.[0],
           avatar,

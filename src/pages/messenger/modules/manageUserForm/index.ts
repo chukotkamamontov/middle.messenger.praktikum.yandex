@@ -2,7 +2,7 @@ import Block from '../../../../tools/block';
 import { tmpl } from './manageUserForm.tmp';
 import { validateFormSubmit } from '../../../../utils/formUtils';
 import { ManageUserFormProps } from './types';
-import store from '../../../../tools/store';
+import Store from '../../../../tools/store';
 
 export class ManageUserForm extends Block {
   constructor(props: ManageUserFormProps) {
@@ -15,8 +15,8 @@ export class ManageUserForm extends Block {
           const data = validateFormSubmit(target, this.children.inputs as Block[]);
 
           if (data) {
-            const userId = data['userId'].split(',').map((n) => +n);
-            const chatId = store.getState().selectedChat?.[0].id;
+            const userId = data.userId.split(',').map((n) => +n);
+            const chatId = Store.getState().selectedChat?.[0].id;
             if (chatId && userId) {
               this.props.onSubmit(chatId, userId);
               target.reset();

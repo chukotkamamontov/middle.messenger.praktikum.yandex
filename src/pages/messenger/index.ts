@@ -12,29 +12,18 @@ import { Button } from '../../components/button';
 import { ChatItem } from './components/chatItem';
 import { MessagesArea } from './components/messagesArea';
 import { MessageForm } from './modules/messageForm';
-import { createChatModal } from './modules/createChatModal';
-import { inputBlock } from '../../blocks/inputBlock';
+import { CreateChatModal } from './modules/createChatModal';
+import { InputBlock } from '../../blocks/inputBlock';
 import { CreateChatForm } from './modules/createChatForm';
 import { CloseModalButton } from '../../components/closeModalButton';
 import { OptionsButton } from '../../components/optionsButton';
 import { ChatOptions } from './modules/chatOptions';
-
 import { ManageUserForm } from './modules/manageUserForm';
 import { AddUserModal } from './modules/addUserModal';
 import { DeleteUserModal } from './modules/deleteUserModal';
 import { ChangeChatAvatarModal } from './modules/changeChatAvatarModal';
 import { ChangeAvatarForm } from './modules/changeAvatarForm';
 import { FileInput } from '../../components/fileInput';
-
-// import { Button } from '../../components/button';
-// import { ClosePopupButton } from '../../components/close-popup-button/index.ts';
-// import { DeleteUserPopup } from '../../components/popups/delete-user-popup/index.ts';
-// import { AddUserPopup } from '../../components/popups/add-user-popup/index.ts';
-
-// Modules
-// import { ChatMessageForm } from './modules/chat-message-form/index.ts';
-// import { ChangeAvatarForm } from './modules/change-avatar-form';
-// import { FileInput } from '../../components/file-input';
 
 export class BaseMessenger extends Block {
   constructor() {
@@ -82,10 +71,10 @@ export class BaseMessenger extends Block {
     });
     this.children.messagesArea = new MessagesArea({});
     
-    this.children.createChatModal = new createChatModal({
+    this.children.createChatModal = new CreateChatModal({
       form: new CreateChatForm({
         inputs: [
-          new inputBlock({
+          new InputBlock({
             label: 'Название чата',
             name: 'new-chat',
             id: 'new-chat',
@@ -182,7 +171,7 @@ export class BaseMessenger extends Block {
       }),
       form: new ManageUserForm({
         inputs: [
-          new inputBlock({
+          new InputBlock({
             label: 'ID пользователя или пользователей',
             name: 'userId',
             id: 'userId',
@@ -218,7 +207,7 @@ export class BaseMessenger extends Block {
       }),
       form: new ManageUserForm({
         inputs: [
-          new inputBlock({
+          new InputBlock({
             label: 'ID пользователя или пользователей',
             name: 'userId',
             id: 'userId',
@@ -273,7 +262,6 @@ export class BaseMessenger extends Block {
         ],
       }),
     });
-
   }
 
   componentDidUpdate() {

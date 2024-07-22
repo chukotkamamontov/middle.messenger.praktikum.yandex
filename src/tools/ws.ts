@@ -8,7 +8,7 @@ export enum wsEvents {
   Open = 'open',
 }
 
-export class ws extends EventBus {
+export class Ws extends EventBus {
   private socket: WebSocket | null = null;
 
   private interval: number = 0;
@@ -43,7 +43,7 @@ export class ws extends EventBus {
 
   public send(data: unknown) {
     if (!this.socket) {
-      throw new Error('Сокет-соединение не установлено');
+      throw new Error('Cоединение не установлено');
     }
     this.socket.send(JSON.stringify(data));
   }
@@ -55,7 +55,7 @@ export class ws extends EventBus {
 
     socket.addEventListener(wsEvents.Close, (event: CloseEvent) => {
       if (event.wasClean) {
-        console.log('Соединение закрыто чисто', event.reason);
+        console.log('Соединение закрыто', event.reason);
       } else {
         console.log('Обрыв соединения');
       }

@@ -1,6 +1,6 @@
 import './assets/styles/styles.scss';
 import router from './tools/router';
-import { Login } from './pages/home/modules/login'
+import { Login } from './pages/home/modules/login';
 import { Register } from './pages/home/modules/register';
 import { Profile } from './pages/profile';
 import { AuthController } from './controllers/AuthController';
@@ -15,7 +15,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     .use(Routes.Register, Register)
     .use(Routes.Profile, Profile)
     .use(Routes.Settings, Settings)
-    .use(Routes.Messenger, Messenger)
+    .use(Routes.Messenger, Messenger);
 
   let isProtectedPage = true;
 
@@ -23,6 +23,8 @@ window.addEventListener('DOMContentLoaded', async () => {
     case Routes.Home:
     case Routes.Register:
       isProtectedPage = false;
+      break;
+    default:
       break;
   }
 

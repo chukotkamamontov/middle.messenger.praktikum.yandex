@@ -1,18 +1,18 @@
-import store from '../tools/store';
-import { wsEvents, ws } from '../tools/ws';
+import Store from '../tools/store';
+import { wsEvents, Ws } from '../tools/ws';
 import { MessageData } from '../types';
 import { MessengerController } from './MessengerController';
 
 export class MessagesController {
-  private static transports: Map<number, ws> = new Map();
+  private static transports: Map<number, Ws> = new Map();
 
   static async connect(chatId: number, token: string) {
     if (this.transports.has(chatId)) {
       return;
     }
-    const userId = store.getState().user?.id;
+    const userId = Store.getState().user?.id;
 
-    const transport = new ws(`wss://ya-praktikum.tech/ws/chats/${userId}/${chatId}/${token}`);
+    const transport = new Ws(`wss://ya-praktikum.tech/ws/chats/${userId}/${chatId}/${token}`);
     this.transports.set(chatId, transport);
 
     await transport.connect();
@@ -48,9 +48,9 @@ export class MessagesController {
 
   static handleMessages(messages: MessageData[] | MessageData, chatId: number) {
     const incomingMessages = Array.isArray(messages) ? messages.reverse() : [messages];
-    const currentMessages = store.getState().messages?.[chatId] ?? [];
+    const currentMessages = Store.getState().messages?.[chatId] ?? [];
     const allMessages = [...currentMessages, ...incomingMessages].filter((message) => message.type === 'message');
-    store.set(`messages.${chatId}`, allMessages);
+    Store.set(`messages.${chatId}`, allMessages);
     if (!Array.isArray(messages)) {
       this.findMessages(chatId);
     }
@@ -58,11 +58,11 @@ export class MessagesController {
   }
 
   static findMessages(chatId: number) {
-    const messages = store.getState().messages?.[chatId];
-    store.set('currentMessages', messages);
+    const messages = Store.getState().messages?.[chatId];
+    Store.set('currentMessages', messages);
   }
 
-  static subscribe(transport: ws, chatId: number) {
+  static subscribe(transport: Ws, chatId: number) {
     transport.on(wsEvents.Message, (data) => {
       this.handleMessages(data, chatId);
     });

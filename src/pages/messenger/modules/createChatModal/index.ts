@@ -2,7 +2,7 @@ import Block from '../../../../tools/block';
 import { tmp } from './createChatModal.tmp';
 import { createChatModalProps } from './types';
 
-export class createChatModal extends Block {
+export class CreateChatModal extends Block {
   constructor(props: createChatModalProps) {
     super(props);
   }

@@ -19,4 +19,3 @@ const mapStateToProps = (state: State) => ({
 });
 
 export const Avatar = withStore(mapStateToProps)(BaseAvatar);
-

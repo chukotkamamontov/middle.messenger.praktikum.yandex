@@ -1,9 +1,9 @@
-import { fetch } from '../tools/fetch';
+import { Fetch } from '../tools/fetch';
 
 export abstract class BaseAPI {
-  protected http: fetch;
+  protected http: Fetch;
 
   protected constructor(endpoint: string) {
-    this.http = new fetch(endpoint);
+    this.http = new Fetch(endpoint);
   }
 }

@@ -27,7 +27,13 @@
         "no-restricted-syntax": "off",
         "@typescript-eslint/no-this-alias": "off",
         "no-shadow": "off",
-        "no-param-reassign": "off"
+        "no-param-reassign": "off",
+        "no-continue": "off",
+        "no-constructor-return": "off",
+        "no-prototype-builtins": "off",
+        "no-useless-constructor": "off",
+        "no-trailing-spaces": "off",
+        "object-curly-newline": "off"
     },
   "settings": {
     "import/resolver": {
