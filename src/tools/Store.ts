@@ -1,14 +1,6 @@
 import EventBus from './eventBus';
-import { Chat, MessageData, UserInfo } from '../types';
+import { State } from '../types';
 import { set } from './set';
-
-export type State = {
-  chats?: Chat[];
-  currentMessages?: MessageData[];
-  messages?: Record<number, MessageData[]>;
-  selectedChat?: Chat[] | null;
-  user?: UserInfo;
-}
 
 export enum StoreEvents {
   Updated = 'Updated',

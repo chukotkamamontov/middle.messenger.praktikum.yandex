@@ -2,9 +2,8 @@ import { tmp } from './messagesArea.tmp';
 import Block from '../../../../tools/block';
 import { MessagesAreaProps } from './types';
 import { MessageItem } from '../messageItem';
-import { MessageData } from '../../../../types';
+import { MessageData, State } from '../../../../types';
 import { withStore } from '../../../../tools/withStore';
-import { State } from '../../../../tools/store';
 
 export class BaseMessagesArea extends Block {
   constructor(props: MessagesAreaProps) {

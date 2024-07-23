@@ -45,7 +45,7 @@ export class MessengerController {
   }
 
   static selectChat(chatId: number) {
-    const target = Store.getState().chats?.find((chat) => chat.id === chatId);
+    const target = Store.getState().chats?.find((chat: Chat) => chat.id === chatId);
     Store.set('selectedChat', [target]);
     this.fetchChatUsers(chatId);
   }
@@ -81,7 +81,7 @@ export class MessengerController {
       const { avatar, id } = response;
 
       const { chats, selectedChat } = Store.getState();
-      const updatedChats = chats?.map((chat) => (chat.id !== id
+      const updatedChats = chats?.map((chat: Chat) => (chat.id !== id
         ? chat
         : {
           ...chat,

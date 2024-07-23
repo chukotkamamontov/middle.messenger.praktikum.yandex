@@ -218,3 +218,11 @@ export type Avatar = {
 export type ChatMember = Omit<UserInfo, 'phone' | 'email'> & {
   role: string;
 }
+
+export type State = {
+  chats?: Chat[];
+  currentMessages?: MessageData[];
+  messages?: Record<number, MessageData[]>;
+  selectedChat?: Chat[] | null;
+  user?: UserInfo;
+}
