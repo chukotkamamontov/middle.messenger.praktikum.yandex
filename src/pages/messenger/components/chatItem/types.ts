@@ -1,6 +1,6 @@
 import { Chat } from '../../../../types';
 
-export interface ChatItemProps {
+export type ChatItemProps = {
   chat: Chat;
   events?: {
     click: () => void;

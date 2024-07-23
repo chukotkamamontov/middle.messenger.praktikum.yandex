@@ -1,7 +1,7 @@
 import styles from './button.module.scss';
 import Block from '../../tools/block';
 
-export interface ButtonProps {
+export type ButtonProps = {
   events?: {
     click: () => void;
   };

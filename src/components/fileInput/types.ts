@@ -1,4 +1,4 @@
-export interface FileInputProps {
+export type FileInputProps = {
   events?: {
     change: (event: Event) => void;
   };

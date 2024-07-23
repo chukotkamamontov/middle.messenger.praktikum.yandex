@@ -1,5 +1,5 @@
 import { UserInfo } from '../../types';
 
-export interface ProfileProps {
+export type ProfileProps = {
   user: UserInfo;
 }

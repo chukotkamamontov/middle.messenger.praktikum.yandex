@@ -1,6 +1,6 @@
 import Block from '../../tools/block';
 
-export interface AvatarInputProps {
+export type AvatarInputProps = {
   avatar: Block;
   events?: {
     change: (event: Event) => void;

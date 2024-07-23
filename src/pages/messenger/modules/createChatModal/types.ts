@@ -1,6 +1,6 @@
 import Block from '../../../../tools/block';
 
-export interface createChatModalProps {
+export type createChatModalProps = {
   button: Block;
   form: Block;
 }

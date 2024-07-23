@@ -1,6 +1,6 @@
 import Block from '../../../../tools/block';
 
-export interface AddUserModalProps {
+export type AddUserModalProps = {
   button: Block;
   form: Block;
 }

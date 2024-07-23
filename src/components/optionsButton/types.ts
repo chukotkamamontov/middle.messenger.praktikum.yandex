@@ -1,3 +1,3 @@
-export interface OptionsButtonProps {
+export type OptionsButtonProps = {
   onClick: () => void;
 }

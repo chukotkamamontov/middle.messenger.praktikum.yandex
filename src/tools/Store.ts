@@ -2,7 +2,7 @@ import EventBus from './eventBus';
 import { Chat, MessageData, UserInfo } from '../types';
 import { set } from './set';
 
-export interface State {
+export type State = {
   chats?: Chat[];
   currentMessages?: MessageData[];
   messages?: Record<number, MessageData[]>;

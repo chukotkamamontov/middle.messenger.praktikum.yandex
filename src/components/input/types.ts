@@ -1,4 +1,4 @@
-export interface InputProps {
+export type InputProps = {
   events?: {
     blur?: (event: FocusEvent) => void;
   };

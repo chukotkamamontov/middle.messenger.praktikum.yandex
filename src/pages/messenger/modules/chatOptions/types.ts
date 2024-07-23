@@ -1,5 +1,5 @@
 import Block from '../../../../tools/block';
 
-export interface ChatOptionsProps {
+export type ChatOptionsProps = {
   buttons?: Block[];
 }

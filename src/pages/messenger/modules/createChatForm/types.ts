@@ -1,6 +1,6 @@
 import Block from '../../../../tools/block';
 
-export interface CreateChatFormProps {
+export type CreateChatFormProps = {
   inputs: Block[];
   onSubmit?: () => void;
   submitButton: Block;

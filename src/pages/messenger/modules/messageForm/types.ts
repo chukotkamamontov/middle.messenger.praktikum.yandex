@@ -1,1 +1,1 @@
-export interface MessageFormProps {}
+export type MessageFormProps = {}

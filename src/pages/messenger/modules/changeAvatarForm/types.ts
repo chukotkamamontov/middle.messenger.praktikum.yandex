@@ -1,5 +1,5 @@
 import Block from '../../../../tools/block';
 
-export interface ChangeAvatarFormProps {
+export type ChangeAvatarFormProps = {
   inputs: Block[];
 }

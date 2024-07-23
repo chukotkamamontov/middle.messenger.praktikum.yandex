@@ -1,6 +1,6 @@
 import Block from '../../../../tools/block';
 
-export interface DeleteUserModalProps {
+export type DeleteUserModalProps = {
   button: Block;
   form: Block;
 }

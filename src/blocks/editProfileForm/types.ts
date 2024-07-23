@@ -1,6 +1,6 @@
 import Block from '../../tools/block';
 
-export interface EditProfileFormProps {
+export type EditProfileFormProps = {
   className?: string;
   inputs: Block[];
   link?: Block;

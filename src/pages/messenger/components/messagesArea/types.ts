@@ -1,5 +1,5 @@
 import { MessageData } from '../../../../types';
 
-export interface MessagesAreaProps {
+export type MessagesAreaProps = {
   messages?: MessageData[];
 }

@@ -1,4 +1,4 @@
-export interface CloseModalButtonProps {
+export type CloseModalButtonProps = {
   events?: {
     click: () => void;
   };

@@ -1,6 +1,6 @@
 import Block from '../../../../tools/block';
 
-export interface ChangeChatAvatarModalProps {
+export type ChangeChatAvatarModalProps = {
   button: Block;
   form: Block;
 }
