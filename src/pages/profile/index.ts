@@ -4,7 +4,7 @@ import { Button } from '../../components/button';
 import Block from '../../tools/block';
 import { tmp } from './profile.tmp';
 import { AuthController } from '../../controllers/AuthController';
-import { withStore } from '../../hoc/withStore';
+import { withStore } from '../../tools/withStore';
 import { State } from '../../tools/store';
 import { Routes } from '../../types';
 import { ProfileProps } from './types';

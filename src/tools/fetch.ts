@@ -1,4 +1,4 @@
-import { queryStringify, queryStringifyParams } from '../utils/fetchUtils';
+import { queryStringify, QueryStringifyParams } from '../utils/fetchUtils';
 
 enum METHODS {
   DELETE = 'DELETE',
@@ -8,16 +8,15 @@ enum METHODS {
 }
 
 type Options = {
-  data?: queryStringifyParams;
+  data?: QueryStringifyParams | FormData;
   method: string;
   headers?: Record<string, string>;
   body?: string;
   timeout?: number;
 };
 
-type OptionsWithoutMethod = Omit<Options, 'method'>;
 
-type HTTPMethod = (url: string, options?: OptionsWithoutMethod) => Promise<any>;
+type HTTPMethod = <T = unknown>(url: string, options?: Partial<Options>) => Promise<T>;
 
 export class Fetch {
   protected BASE_URL = 'https://ya-praktikum.tech/api/v2';
@@ -64,13 +63,16 @@ export class Fetch {
     options.timeout,
   );
 
-  request<Response>(url: string, options: Options = { method: METHODS.GET }, timeout: number = 5000): Promise<Response> {
+  request<Response>(url: string, options: Options, timeout: number = 5000): Promise<Response> {
     const { data, headers = {}, method } = options;
     console.log('[request]: ', data);
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
       const isGet = method === METHODS.GET;
-      const requestUrl = isGet && !!data ? `${url}${queryStringify(data)}` : url;
+      let requestUrl = url
+      if (!(data instanceof FormData)) {
+        requestUrl = isGet && !!data ? `${url}${queryStringify(data)}` : url;
+      }
 
       xhr.open(method, requestUrl);
 

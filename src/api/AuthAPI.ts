@@ -18,8 +18,8 @@ class AuthAPI extends BaseAPI {
     return this.http.post('/logout');
   }
 
-  getUserInfo(): Promise<UserInfo> {
-    return this.http.get('/user');
+  getUserInfo(){
+    return this.http.get<UserInfo>('/user');
   }
 }
 

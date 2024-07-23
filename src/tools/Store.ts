@@ -1,4 +1,4 @@
-import EventBus from './EventBus';
+import EventBus from './eventBus';
 import { Chat, MessageData, UserInfo } from '../types';
 import { set } from './set';
 

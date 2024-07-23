@@ -1,6 +1,6 @@
 import messengerApi from '../api/MessengerAPI';
 import Store from '../tools/store';
-import { Chat, ChatMember } from '../types';
+import { Chat } from '../types';
 import { MessagesController } from './MessagesController';
 
 export class MessengerController {
@@ -52,7 +52,7 @@ export class MessengerController {
 
   static async fetchChatUsers(chatId: number) {
     try {
-      const chatMembers: ChatMember[] = await messengerApi.getChatUsers(chatId);
+      const chatMembers = await messengerApi.getChatUsers(chatId);
       const nonAdminMembers = chatMembers.filter((user) => user.role !== 'admin');
       Store.set('selectedChat', [
         {

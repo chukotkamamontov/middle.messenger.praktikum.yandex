@@ -3,7 +3,7 @@ import Block from '../../../../tools/block';
 import { MessagesAreaProps } from './types';
 import { MessageItem } from '../messageItem';
 import { MessageData } from '../../../../types';
-import { withStore } from '../../../../hoc/withStore';
+import { withStore } from '../../../../tools/withStore';
 import { State } from '../../../../tools/store';
 
 export class BaseMessagesArea extends Block {

@@ -7,7 +7,7 @@ import { AuthController } from './AuthController';
 export class UserController {
   static async changeProfile(data: ProfileData) {
     try {
-      const newProfileData: ProfileData = await userAPI.changeProfile(data);
+      const newProfileData = await userAPI.changeProfile(data);
       Store.set('user', newProfileData);
       router.go('/profile');
     } catch (error) {

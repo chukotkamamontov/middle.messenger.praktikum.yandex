@@ -1,6 +1,6 @@
 import { tmp } from './messenger.tmp';
 import Block from '../../tools/block';
-import { withStore } from '../../hoc/withStore';
+import { withStore } from '../../tools/withStore';
 import { MessengerController } from '../../controllers/MessengerController';
 import { MessagesController } from '../../controllers/MessagesController';
 import { State } from '../../tools/store';
@@ -244,7 +244,7 @@ export class BaseMessenger extends Block {
       form: new ChangeAvatarForm({
         inputs: [
           new FileInput({
-            onChange: (event: SubmitEvent) => {
+            onChange: (event: Event) => {
               const target = event.target as HTMLInputElement;
               if (target.files) {
                 const file = target.files[0];

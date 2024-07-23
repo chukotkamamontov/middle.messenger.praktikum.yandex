@@ -9,9 +9,9 @@ export class LoginForm extends Block {
     super({
       ...props,
       events: {
-        submit: (event: SubmitEvent) => {
+        submit: (event: Event) => {
           event.preventDefault();
-          const data: any = validateFormSubmit(event.target as HTMLFormElement, this.children.inputs as Block[]);
+          const data = validateFormSubmit(event.target as HTMLFormElement, this.children.inputs as Block[]);
           if (data) {
             AuthController.signin(data as unknown as SignInData);
           }

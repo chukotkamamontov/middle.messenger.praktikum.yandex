@@ -1,4 +1,4 @@
-import Block from '../../../../core/Block.ts';
+import Block from '../../../../tools/block';
 
 export interface ChangeAvatarFormProps {
   inputs: Block[];

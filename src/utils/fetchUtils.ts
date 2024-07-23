@@ -1,12 +1,8 @@
-export interface queryStringifyParams {
-  data: {
-    [key: string]: unknown;
-  };
-}
+export type QueryStringifyParams = Record<string, unknown>
 
-export const queryStringify = (data: queryStringifyParams) => {
+export const queryStringify = (data: QueryStringifyParams) => {
   const mapped = Object.entries(data).map(([key, value]) => {
-    if (typeof value === 'object') {
+    if (typeof value === 'object' && value !== null) {
       value.toString();
     }
     return `${key}=${value}`;

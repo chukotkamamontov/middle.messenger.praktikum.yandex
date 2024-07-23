@@ -1,4 +1,6 @@
+import { Avatar, Chat, ChatMember } from '../types';
 import { BaseAPI } from './BaseAPI';
+import { Token } from './MessengerAPI';
 
 class ChatsAPI extends BaseAPI {
   constructor() {
@@ -13,8 +15,9 @@ class ChatsAPI extends BaseAPI {
     });
   }
 
+
   getChats(data: Record<string, number | string>) {
-    return this.http.get('/', { data });
+    return this.http.get<Chat[]>('/', { data });
   }
 
   addUsers(users: number[], chatId: number) {
@@ -36,7 +39,7 @@ class ChatsAPI extends BaseAPI {
   }
 
   getChatUsers(chatId: number) {
-    return this.http.get(`/${chatId}/users`);
+    return this.http.get<ChatMember[]>(`/${chatId}/users`);
   }
 
   delete(chatId: number) {
@@ -48,11 +51,11 @@ class ChatsAPI extends BaseAPI {
   }
 
   changeChatAvatar(data: FormData) {
-    return this.http.put('/avatar', { data });
+    return this.http.put<Avatar>('/avatar', { data });
   }
 
   getToken(chatId: number) {
-    return this.http.post(`/token/${chatId}`);
+    return this.http.post<Token>(`/token/${chatId}`);
   }
 }
 

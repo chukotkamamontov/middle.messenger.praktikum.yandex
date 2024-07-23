@@ -1,7 +1,7 @@
 import { AvatarProps } from './types';
 import Block from '../../tools/block';
 import { tmp } from './avatar.tmp';
-import { withStore } from '../../hoc/withStore';
+import { withStore } from '../../tools/withStore';
 import { State } from '../../tools/store';
 
 export class BaseAvatar extends Block {

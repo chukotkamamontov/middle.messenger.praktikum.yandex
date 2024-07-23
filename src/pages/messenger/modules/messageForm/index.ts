@@ -10,7 +10,7 @@ export class MessageForm extends Block {
     super({
       ...props,
       events: {
-        submit: (event: SubmitEvent) => {
+        submit: (event: Event) => {
           event.preventDefault();
           const target = event.target as HTMLFormElement;
           const data = validateFormSubmit(target, this.children.input as Block[]);

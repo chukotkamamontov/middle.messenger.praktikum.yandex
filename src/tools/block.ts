@@ -1,6 +1,11 @@
 import { v4 as uuidv4 } from 'uuid';
 import Handlebars from 'handlebars';
-import EventBus from './EventBus';
+import EventBus from './eventBus';
+
+export type BlockConstructor<T> = {
+  new (props: T): Block;
+  EVENTS: typeof Block.EVENTS
+} 
 
 class Block<P extends Record<string, unknown> = any> {
   static EVENTS = {

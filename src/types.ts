@@ -99,7 +99,7 @@ export type TextareaBlockProps = {
   name: string;
 }
 
-export interface LinkProps {
+export type LinkProps = {
   content?: Block;
   events?: {
     click: (event: Event) => void;
@@ -112,7 +112,7 @@ export type ErrorProps = {
   text: string;
 }
 
-export interface SignUpData {
+export type SignUpData = {
   email: string;
   first_name: string;
   login: string;
@@ -121,12 +121,12 @@ export interface SignUpData {
   second_name: string;
 }
 
-export interface SignInData {
+export type SignInData = {
   login: string;
   password: string;
 }
 
-export interface UserInfo {
+export type UserInfo = {
   avatar: string;
   display_name: string;
   email: string;
@@ -137,7 +137,7 @@ export interface UserInfo {
   second_name: string;
 }
 
-export interface ProfileData {
+export type ProfileData = {
   display_name: string;
   email: string;
   first_name: string;
@@ -148,7 +148,7 @@ export interface ProfileData {
   id?: string;
 }
 
-export interface PasswordData {
+export type PasswordData = {
   newPassword: string;
   oldPassword: string;
 }
@@ -164,7 +164,7 @@ export enum Routes {
   Error = '/500',
 }
 
-export interface MessageData {
+export type MessageData = {
   chat_id: number;
   content: string;
   file?: {
@@ -181,7 +181,7 @@ export interface MessageData {
   user_id: string;
 }
 
-export interface LastMessage {
+export type LastMessage = {
   content: string;
   time: string;
   user: {
@@ -194,15 +194,27 @@ export interface LastMessage {
   };
 }
 
-export interface Chat {
+export type Chat = {
   avatar: string;
   created_by: number;
   id: number;
   last_message: LastMessage;
   title: string;
   unread_count: number;
+  role: string;
 }
 
-export interface ChatMember extends Omit<UserInfo, 'phone' | 'email'> {
-  role?: string;
+export type Avatar = {
+  id: number;
+  first_name: string;
+  second_name: string;
+  display_name: string;
+  phone: string;
+  login: string;
+  avatar: string;
+  email: string;
+}
+
+export type ChatMember = Omit<UserInfo, 'phone' | 'email'> & {
+  role: string;
 }

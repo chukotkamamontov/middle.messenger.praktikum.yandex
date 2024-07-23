@@ -1,29 +1,15 @@
 import { merge } from './merge';
 
-type SetValue = {
-  avatar: null | string;
-  created_by: number;
-  id: number;
-  last_message: null | string;
-  title: string
-  unread_count: number
-}
-
-type Indexed<T = Record<string, unknown>> = {
-  [key in string]: T;
-};
-
-export const set = (object: Indexed | unknown, path: string, value: unknown): Indexed | unknown => {
+export const set = (object: any, path: any, value: any): any => {
   console.log('[set] [value]: ', value);
   if (typeof object !== 'object' || object === null) {
     return object;
   }
 
-  const result = path.split('.').reduceRight<Indexed>(
-    (acc, key) => ({
-      [key]: acc,
+  const result = path.split('.').reduceRight(
+    (acc: any, key: any) => ({[key]: acc,
     }),
-    value as any,
+    value,
   );
-  return merge(object as Indexed, result);
+  return merge(object, result);
 };

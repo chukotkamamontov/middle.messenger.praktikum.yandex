@@ -1,4 +1,9 @@
+import { Avatar, Chat, ChatMember } from '../types';
 import { BaseAPI } from './BaseAPI';
+
+export type Token = {
+  token: string
+}
 
 class MessengerAPI extends BaseAPI {
   constructor() {
@@ -14,7 +19,7 @@ class MessengerAPI extends BaseAPI {
   }
 
   getChats(data: Record<string, number | string>) {
-    return this.http.get('/', { data });
+    return this.http.get<Chat[]>('/', { data });
   }
 
   addUsers(users: number[], chatId: number) {
@@ -36,7 +41,7 @@ class MessengerAPI extends BaseAPI {
   }
 
   getChatUsers(chatId: number) {
-    return this.http.get(`/${chatId}/users`);
+    return this.http.get<ChatMember[]>(`/${chatId}/users`);
   }
 
   delete(chatId: number) {
@@ -48,11 +53,11 @@ class MessengerAPI extends BaseAPI {
   }
 
   changeChatAvatar(data: FormData) {
-    return this.http.put('/avatar', { data });
+    return this.http.put<Avatar>('/avatar', { data });
   }
 
   getToken(chatId: number) {
-    return this.http.post(`/token/${chatId}`);
+    return this.http.post<Token>(`/token/${chatId}`);
   }
 }
 

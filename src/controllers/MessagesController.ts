@@ -63,7 +63,7 @@ export class MessagesController {
   }
 
   static subscribe(transport: Ws, chatId: number) {
-    transport.on(wsEvents.Message, (data) => {
+    transport.on(wsEvents.Message, (data: MessageData[] | MessageData) => {
       this.handleMessages(data, chatId);
     });
   }
