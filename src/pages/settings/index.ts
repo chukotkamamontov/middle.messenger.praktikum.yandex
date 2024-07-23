@@ -1,5 +1,4 @@
 import Block from '../../tools/block';
-import Store from '../../tools/store';
 import { tmp } from './settings.tmp';
 import { fields } from './settings.fields';
 import { Button } from '../../components/button';
@@ -9,6 +8,7 @@ import { InputBlock } from '../../blocks/inputBlock';
 import { EditProfileForm } from '../../blocks/editProfileForm';
 import { UserController } from '../../controllers/UserController';
 import { UserInfo, InputBlockProps } from '../../types';
+import Store from '../../tools/store';
 
 export class Settings extends Block {
   constructor() {

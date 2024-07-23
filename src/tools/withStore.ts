@@ -1,6 +1,7 @@
-import Store, { StoreEvents, State } from './store';
+import Store, { StoreEvents } from './store';
 import { BlockConstructor } from './block';
 import { isEqual } from '../utils/storeUtils';
+import { State } from '../types';
 
 type MapState = Record<string, unknown>
 type MapStateToProps = (state: State) => MapState

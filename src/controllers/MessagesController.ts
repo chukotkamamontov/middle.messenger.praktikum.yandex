@@ -1,7 +1,7 @@
-import Store from '../tools/store';
 import { wsEvents, Ws } from '../tools/ws';
 import { MessageData } from '../types';
 import { MessengerController } from './MessengerController';
+import Store from '../tools/store';
 
 export class MessagesController {
   private static transports: Map<number, Ws> = new Map();

@@ -1,7 +1,7 @@
 import authAPI from '../api/AuthAPI';
 import { Routes, SignInData, SignUpData, UserInfo } from '../types';
-import Store from '../tools/store';
 import router from '../tools/router';
+import Store from '../tools/store';
 
 export class AuthController {
   static async signin(data: SignInData) {

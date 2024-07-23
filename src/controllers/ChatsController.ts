@@ -1,7 +1,7 @@
 import chatsAPI from '../api/ChatsAPI';
-import Store from '../tools/store';
 import { MessagesController } from './MessagesController';
 import { Chat } from '../types';
+import Store from '../tools/store';
 
 export class ChatsController {
   static async create(title: string) {

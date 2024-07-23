@@ -1,8 +1,8 @@
 import { PasswordData, ProfileData } from '../types';
 import userAPI from '../api/UserAPI';
-import Store from '../tools/store';
 import router from '../tools/router';
 import { AuthController } from './AuthController';
+import Store from '../tools/store';
 
 export class UserController {
   static async changeProfile(data: ProfileData) {
