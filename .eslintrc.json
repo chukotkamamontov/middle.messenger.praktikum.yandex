@@ -33,7 +33,8 @@
         "no-prototype-builtins": "off",
         "no-useless-constructor": "off",
         "no-trailing-spaces": "off",
-        "object-curly-newline": "off"
+        "object-curly-newline": "off",
+        "react/state-in-constructor": "off"
     },
   "settings": {
     "import/resolver": {

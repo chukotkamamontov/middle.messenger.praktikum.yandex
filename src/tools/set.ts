@@ -7,7 +7,8 @@ export const set = (object: any, path: any, value: any): any => {
   }
 
   const result = path.split('.').reduceRight(
-    (acc: any, key: any) => ({[key]: acc,
+    (acc: any, key: any) => ({
+      [key]: acc,
     }),
     value,
   );

@@ -1,7 +1,7 @@
 import chatsAPI from '../api/ChatsAPI';
 import Store from '../tools/store';
 import { MessagesController } from './MessagesController';
-import { Chat, ChatMember } from '../types';
+import { Chat } from '../types';
 
 export class ChatsController {
   static async create(title: string) {
@@ -18,7 +18,7 @@ export class ChatsController {
       const chats = await chatsAPI.getChats({ limit: 50 });
       chats.map(async (chat: Chat) => {
         const { token } = await this.getToken(chat.id);
-        console.log('getChatsList: ', token)
+        console.log('getChatsList: ', token);
         await MessagesController.connect(chat.id, token);
       });
       Store.set('chats', chats);
@@ -53,7 +53,7 @@ export class ChatsController {
 
   static async fetchChatUsers(chatId: number) {
     try {
-      const chatMembers: ChatMember[] = await chatsAPI.getChatUsers(chatId);
+      const chatMembers= await chatsAPI.getChatUsers(chatId);
       const nonAdminMembers = chatMembers.filter((user) => user.role !== 'admin');
       Store.set('selectedChat', [
         {

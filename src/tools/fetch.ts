@@ -15,7 +15,6 @@ type Options = {
   timeout?: number;
 };
 
-
 type HTTPMethod = <T = unknown>(url: string, options?: Partial<Options>) => Promise<T>;
 
 export class Fetch {
@@ -69,7 +68,7 @@ export class Fetch {
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
       const isGet = method === METHODS.GET;
-      let requestUrl = url
+      let requestUrl = url;
       if (!(data instanceof FormData)) {
         requestUrl = isGet && !!data ? `${url}${queryStringify(data)}` : url;
       }
