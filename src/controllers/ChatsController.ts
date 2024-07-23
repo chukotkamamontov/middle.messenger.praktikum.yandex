@@ -53,7 +53,7 @@ export class ChatsController {
 
   static async fetchChatUsers(chatId: number) {
     try {
-      const chatMembers= await chatsAPI.getChatUsers(chatId);
+      const chatMembers = await chatsAPI.getChatUsers(chatId);
       const nonAdminMembers = chatMembers.filter((user) => user.role !== 'admin');
       Store.set('selectedChat', [
         {
