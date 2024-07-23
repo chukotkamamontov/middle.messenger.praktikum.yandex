@@ -1,1 +1,1 @@
-export type MessageFormProps = {}
+export type MessageFormProps = object;
