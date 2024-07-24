@@ -1,7 +1,7 @@
 import messengerApi from '../api/MessengerAPI';
 import { Chat } from '../types';
 import { MessagesController } from './MessagesController';
-import Store from '../tools/store';
+import Store from '../tools/rootStore';
 
 export class MessengerController {
   static async create(title: string) {

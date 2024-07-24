@@ -1,4 +1,4 @@
-import Store, { StoreEvents } from './store';
+import Store, { StoreEvents } from './rootStore';
 import { BlockConstructor } from './block';
 import { isEqual } from '../utils/storeUtils';
 import { State } from '../types';

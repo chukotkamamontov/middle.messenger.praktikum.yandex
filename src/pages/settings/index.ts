@@ -8,7 +8,7 @@ import { InputBlock } from '../../blocks/inputBlock';
 import { EditProfileForm } from '../../blocks/editProfileForm';
 import { UserController } from '../../controllers/UserController';
 import { UserInfo, InputBlockProps } from '../../types';
-import Store from '../../tools/store';
+import Store from '../../tools/rootStore';
 
 export class Settings extends Block {
   constructor() {

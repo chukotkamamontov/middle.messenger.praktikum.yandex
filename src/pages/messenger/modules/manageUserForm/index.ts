@@ -2,7 +2,7 @@ import Block from '../../../../tools/block';
 import { tmpl } from './manageUserForm.tmp';
 import { validateFormSubmit } from '../../../../utils/formUtils';
 import { ManageUserFormProps } from './types';
-import Store from '../../../../tools/store';
+import Store from '../../../../tools/rootStore';
 
 export class ManageUserForm extends Block {
   constructor(props: ManageUserFormProps) {

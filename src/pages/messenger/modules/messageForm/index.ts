@@ -3,7 +3,7 @@ import { tmp } from './messageForm.tmp';
 import { MessageFormProps } from './types';
 import { validateFormSubmit } from '../../../../utils/formUtils';
 import { MessagesController } from '../../../../controllers/MessagesController';
-import Store from '../../../../tools/store';
+import Store from '../../../../tools/rootStore';
 
 export class MessageForm extends Block {
   constructor(props: MessageFormProps) {
