@@ -1,22 +1,22 @@
-import Block from '../../tools/block';
-import styles from './link.module.scss';
 import { LinkProps } from '../../types';
+import Block from '../../tools/block';
+import router from '../../tools/router';
+import { tmp } from './link.tmp';
 
 export class Link extends Block {
   constructor(props: LinkProps) {
-    super('a', props);
-  }
-
-  init() {
-    const element = this.element as HTMLLinkElement;
-    element.className = styles.link;
-    if (this.props.className) {
-      element.classList.add(this.props.className);
-    }
-    element!.href = this.props.to;
+    super({
+      ...props,
+      events: {
+        click: (event: Event) => {
+          event.preventDefault();
+          router.go(this.props.to);
+        },
+      },
+    });
   }
 
   render() {
-    return this.compile('{{text}}');
+    return this.compile(tmp);
   }
 }

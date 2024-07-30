@@ -1,32 +1,43 @@
-import { render } from './tools/render';
-import { HomePage } from './pages/home';
-import { NotFoundPage } from './pages/notFoundPage';
-import { Settings } from './pages/settings';
+import './assets/styles/styles.scss';
+import router from './tools/router';
+import { Login } from './pages/home/modules/login';
+import { Register } from './pages/home/modules/register';
 import { Profile } from './pages/profile';
-import { SignIn } from './pages/signin';
-import { SignUp } from './pages/signup';
+import { AuthController } from './controllers/AuthController';
+import { Routes } from './types';
+import { Settings } from './pages/settings';
+import { Messenger } from './pages/messenger';
 
-import { Fetch } from './tools/fetch';
+window.addEventListener('DOMContentLoaded', async () => {
+  router
+    .use(Routes.Home, Login)
+    .use(Routes.Login, Login)
+    .use(Routes.Register, Register)
+    .use(Routes.Profile, Profile)
+    .use(Routes.Settings, Settings)
+    .use(Routes.Messenger, Messenger);
 
-const fetch = new Fetch();
-fetch.get('https://fakestoreapi.com/products/1').then((res) => console.log(res));
+  let isProtectedPage = true;
 
-const ROUTES: any = {
-  '/': new HomePage(),
-  '/settings': new Settings(),
-  '/profile': new Profile(),
-  '/signin': new SignIn(),
-  '/signup': new SignUp(),
-  '/404': new NotFoundPage({
-    statusCode: '404',
-    message: 'Страница не найдена',
-  }),
-  '/500': new NotFoundPage({
-    statusCode: '500',
-    message: 'Ошибка сервера',
-  }),
-};
+  switch (window.location.pathname) {
+    case Routes.Home:
+    case Routes.Register:
+      isProtectedPage = false;
+      break;
+    default:
+      break;
+  }
 
-document.addEventListener('DOMContentLoaded', () => {
-  render('#app', ROUTES[window.location.pathname]);
+  try {
+    await AuthController.fetchUser();
+    router.start();
+    if (!isProtectedPage) {
+      router.go(Routes.Profile);
+    }
+  } catch (error) {
+    router.start();
+    if (isProtectedPage) {
+      router.go(Routes.Home);
+    }
+  }
 });

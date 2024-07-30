@@ -112,4 +112,5 @@ export const validateFormSubmit = (form: HTMLFormElement, inputs: Block[], isMes
     }
   });
   console.log(formFields);
+  return formFields;
 };

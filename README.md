@@ -22,6 +22,11 @@ sprint_2
 https://papaya-mousse-0dc46c.netlify.app/
 ```
 
+```
+sprint_3
+https://beamish-cactus-5dd2c7.netlify.app/
+```
+
 ## Команды
 
 - Установка зависимостей

@@ -10,13 +10,11 @@
     "@typescript-eslint"
   ],
   "rules": {
-        // "max-len": [2, 100],
         "max-params": [2, 3],
-        // "@typescript-eslint/no-unused-vars": 2,
         "@typescript-eslint/no-explicit-any": "off",
         "@typescript-eslint/no-unused-vars": "off",
-        "import/extensions": "off",
         "import/prefer-default-export": "off",
+        "import/extensions": "off",
         "no-underscore-dangle": "off",
         "class-methods-use-this": "off",
         "import/no-extraneous-dependencies": "off",
@@ -27,7 +25,14 @@
         "no-restricted-syntax": "off",
         "@typescript-eslint/no-this-alias": "off",
         "no-shadow": "off",
-        "no-param-reassign": "off"
+        "no-param-reassign": "off",
+        "no-continue": "off",
+        "no-constructor-return": "off",
+        "no-prototype-builtins": "off",
+        "no-useless-constructor": "off",
+        "no-trailing-spaces": "off",
+        "object-curly-newline": "off",
+        "react/state-in-constructor": "off"
     },
   "settings": {
     "import/resolver": {

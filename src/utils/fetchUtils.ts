@@ -1,11 +1,15 @@
-export function queryStringify(data = {}) {
-  if (typeof data !== 'object') {
-    throw new Error('Data must be object');
-  }
+export type QueryStringifyParams = Record<string, unknown>
 
-  const queries = Object.entries(data).reduce((acc, [key, value]) => `${acc}${key}=${value}&`, '');
-  return queries ? `?${queries.slice(0, -1)}` : queries;
-}
+export const queryStringify = (data: QueryStringifyParams) => {
+  const mapped = Object.entries(data).map(([key, value]) => {
+    if (typeof value === 'object' && value !== null) {
+      value.toString();
+    }
+    return `${key}=${value}`;
+  });
+
+  return `?${mapped.join('&')}`;
+};
 
 export function deepClone<T>(obj: T): T {
   if (!obj || typeof obj === 'function') {

@@ -4,3 +4,5 @@ declare module '*.hbs' {
   export default content;
 }
 declare module '*.scss';
+declare module '*.png';
+declare module '*.jpg';

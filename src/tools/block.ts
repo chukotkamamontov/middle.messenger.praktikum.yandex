@@ -2,7 +2,12 @@ import { v4 as uuidv4 } from 'uuid';
 import Handlebars from 'handlebars';
 import EventBus from './eventBus';
 
-export default class Block<P extends Record<string, any> = any> {
+export type BlockConstructor<T> = {
+  new (props: T): Block;
+  EVENTS: typeof Block.EVENTS
+} 
+
+class Block<P extends Record<string, unknown> = any> {
   static EVENTS = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
@@ -14,23 +19,17 @@ export default class Block<P extends Record<string, any> = any> {
 
   protected props: P;
 
+  // eslint-disable-next-line no-use-before-define
   public children: Record<string, Block | Block[]>;
 
   private eventBus: () => EventBus;
 
   private _element: HTMLElement | null = null;
 
-  private readonly _meta: { props: P; tagName: string };
-
-  constructor(tagName = 'div', propsWithChildren: P) {
+  constructor(propsWithChildren: P) {
     const eventBus = new EventBus();
 
     const { children, props } = this._getChildrenAndProps(propsWithChildren);
-
-    this._meta = {
-      tagName,
-      props: props as P,
-    };
 
     this.children = children;
     this.props = this._makePropsProxy(props);
@@ -81,14 +80,10 @@ export default class Block<P extends Record<string, any> = any> {
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
   }
 
-  _createResources() {
-    const { tagName } = this._meta;
-    this._element = this._createDocumentElement(tagName);
-  }
-
   private _init() {
-    this._createResources();
+    // console.log(this._getChildrenAndProps)
     this.init();
+
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
   }
 
@@ -135,52 +130,53 @@ export default class Block<P extends Record<string, any> = any> {
 
   private _render() {
     const fragment = this.render();
+    const newElement = fragment.firstElementChild as HTMLElement;
+
+    if (this._element && newElement) {
+      this._element.replaceWith(newElement);
+    }
+
+    this._element = newElement;
     this._removeEvents();
-    this._element!.innerHTML = '';
-    this._element!.append(fragment);
+
     this._addEvents();
   }
 
   protected compile(template: string) {
-    // console.log('[template]: ', template)
-    const contextAndStubs = { ...this.props } as Record<string, any>;
-
-    // Создаем заглушки для всех children
-
-    for (const [name, component] of Object.entries(this.children)) {
-      // console.log('[component]: ', component)
-      // console.log(component)
-      contextAndStubs[name] = Array.isArray(component)
-        ? component.map((comp) => `<div data-id="${comp.id}"></div>`)
-        : `<div data-id="${(component as Block).id}"></div>`;
-    }
+    const contextAndStubs = { ...this.props } as Record<string, unknown>;
+    Object.entries(this.children).forEach(([name, component]) => {
+      if (Array.isArray(component)) {
+        contextAndStubs[name] = component.map((comp) => `<div data-id="${comp.id}"></div>`);
+      } else {
+        contextAndStubs[name] = `<div data-id="${component.id}"></div>`;
+      }
+    });
 
     const html = Handlebars.compile(template)(contextAndStubs);
-    const fragment = document.createElement('template');
-    fragment.innerHTML = html;
-
-    // Заменяем заглушки реальными элементами
-    for (const component of Object.values(this.children)) {
+    const temp = document.createElement('template');
+    temp.innerHTML = html;
+    Object.entries(this.children).forEach(([_, component]) => {
       if (Array.isArray(component)) {
-        component.forEach((comp) => this._replaceStubWithContent(fragment, comp));
+        const stubs = component.map((comp) => temp.content.querySelector(`[data-id="${comp.id}"]`));
+        if (!stubs.length) {
+          return;
+        }
+        stubs.forEach((stub, index) => {
+          component[index].getContent()?.append(...Array.from(stub!.childNodes));
+          stub!.replaceWith(component[index].getContent()!);
+        });
       } else {
-        this._replaceStubWithContent(fragment, component as Block);
-      }
-    }
-    // console.log('[fragment.content]: ', fragment.content)
-    return fragment.content;
-  }
+        const stub = temp.content.querySelector(`[data-id="${component.id}"]`);
+        if (!stub) {
+          return;
+        }
+        component.getContent()?.append(...Array.from(stub.childNodes));
 
-  private _replaceStubWithContent(fragment: HTMLTemplateElement, component: Block) {
-    const stub = fragment.content.querySelector(`[data-id="${component.id}"]`);
-    if (!stub) {
-      return;
-    }
-    const content = component.getContent();
-    if (content) {
-      content.append(...Array.from(stub.childNodes));
-      stub.replaceWith(content);
-    }
+        stub.replaceWith(component.getContent()!);
+      }
+    });
+
+    return temp.content;
   }
 
   protected render(): DocumentFragment {
@@ -213,15 +209,14 @@ export default class Block<P extends Record<string, any> = any> {
     });
   }
 
-  _createDocumentElement(tagName: string) {
-    return document.createElement(tagName);
+  show(query: string, render: (query: string, block: Block) => void) {
+    this.eventBus().emit(Block.EVENTS.INIT);
+    render(query, this);
   }
 
-  // show() {
-  //   this.getContent()!.style.display = 'block';
-  // }
-
-  // hide() {
-  //   this.getContent()!.style.display = 'none';
-  // }
+  hide() {
+    this.getContent()!.remove();
+  }
 }
+
+export default Block;

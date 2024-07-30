@@ -1,0 +1,13 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.successNotification {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 0.875rem;
+  color: var(--bg-signup-page);
+  text-align: center;
+}
