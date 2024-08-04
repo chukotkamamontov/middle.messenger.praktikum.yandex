@@ -15,12 +15,8 @@
     "preview": "vite preview",
     "start": "npm run build && node app.js",
     "lint": "stylelint \"**/*.scss\" && eslint . --ext .ts &&  tsc --noEmit",
-    "format": "prettier --write ."
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run lint"
-    }
+    "format": "prettier --write .",
+    "prepare": "husky"
   },
   "devDependencies": {
     "@types/uuid": "^10.0.0",
