@@ -17,6 +17,11 @@
     "lint": "stylelint \"**/*.scss\" && eslint . --ext .ts &&  tsc --noEmit",
     "format": "prettier --write ."
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint"
+    }
+  },
   "devDependencies": {
     "@types/uuid": "^10.0.0",
     "@typescript-eslint/eslint-plugin": "^7.14.1",
