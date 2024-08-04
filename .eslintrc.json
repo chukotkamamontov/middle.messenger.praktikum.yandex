@@ -34,7 +34,7 @@
         "object-curly-newline": "off",
         "react/state-in-constructor": "off",
         "@ts-expect-error": "off",
-        "@typescript-eslint/ban-ts-comment": "off"
+        "@typescript-eslint/ban-ts-comment": "error"
     },
   "settings": {
     "import/resolver": {

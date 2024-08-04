@@ -19,8 +19,7 @@ describe('Fetch test', () => {
     // Stub (заглушка). Эта заглушка используется для перехвата и имитации HTTP-запросов.
     xhr = sinon.useFakeXMLHttpRequest();
 
-    // @ts-expect-error
-    global.XMLHttpRequest = xhr;
+    global.XMLHttpRequest = xhr as any;
     // Метод xhr.onCreate также является заглушкой, которая позволяет перехватывать создаваемые запросы и добавлять их в массив requests.
     xhr.onCreate = (req) => {
       // Spy (шпион): массив requests используется для отслеживания вызовов HTTP-запросов, 
