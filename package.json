@@ -10,12 +10,12 @@
     "node": ">=16.0.0"
   },
   "scripts": {
+    "prepare": "husky install",
     "dev": "vite --open",
     "build": "vite build --emptyOutDir",
     "preview": "vite preview",
     "start": "npm run build && node app.js",
     "format": "prettier --write .",
-    "prepare": "husky",
     "lint": "stylelint \"**/*.scss\" && eslint . --ext .ts",
     "test": "mocha --es-module-specifier-resolution=node"
   },
