@@ -10,7 +10,7 @@
     "node": ">=16.0.0"
   },
   "scripts": {
-    "prepare": "husky install",
+    "prepare": "husky",
     "dev": "vite --open",
     "build": "vite build --emptyOutDir",
     "preview": "vite preview",
