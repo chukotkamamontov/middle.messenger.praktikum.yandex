@@ -8,7 +8,7 @@ import { expect } from 'chai';
 import { Fetch } from './fetch';
 
 // Главный блок описания тестов для класса Fetch.
-describe('Fetch test', () => {
+describe('HTTP Transport test', () => {
   let xhr: SinonFakeXMLHttpRequestStatic;
   let instance: Fetch;
   const requests: SinonFakeXMLHttpRequest[] = [];
@@ -42,6 +42,7 @@ describe('Fetch test', () => {
     it('should invoke get() method', () => {
       instance.get('/');
       const [request] = requests;
+      // console.log(request)
       expect(request.method).to.equal('GET');
     });
 
