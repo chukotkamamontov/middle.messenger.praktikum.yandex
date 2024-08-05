@@ -30,6 +30,12 @@ describe('Fetch', () => {
       done();
     });
 
-    requests[0].respond(500, { 'Content-Type': 'application/json' }, JSON.stringify({ error: 'Internal Server Error' }));
+    if (requests.length > 0) {
+      requests[0].respond(
+        500,
+        { 'Content-Type': 'application/json' },
+        JSON.stringify({ error: 'Internal Server Error' }),
+      );
+    }
   });
 });
