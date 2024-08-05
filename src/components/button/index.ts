@@ -1,4 +1,3 @@
-import styles from './button.module.scss';
 import Block from '../../tools/block';
 
 export type ButtonProps = {
@@ -15,6 +14,6 @@ export class Button extends Block {
   }
 
   render() {
-    return this.compile(`<button class=${styles.button} type="{{type}}">{{text}}</button>`);
+    return this.compile('<button type="{{type}}">{{text}}</button>');
   }
 }
