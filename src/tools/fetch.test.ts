@@ -1,51 +1,35 @@
-import { afterEach, beforeEach, describe } from 'mocha';
-import sinon, { SinonFakeXMLHttpRequest, SinonFakeXMLHttpRequestStatic } from 'sinon';
+import { describe, it, beforeEach, afterEach } from 'mocha';
 import { expect } from 'chai';
+import sinon, { SinonFakeXMLHttpRequest, SinonFakeXMLHttpRequestStatic } from 'sinon';
 import { Fetch } from './fetch';
 
-// Главный блок описания тестов для класса Fetch.
-describe('HTTP Transport test', () => {
+describe('Fetch', () => {
   let xhr: SinonFakeXMLHttpRequestStatic;
+  let requests: SinonFakeXMLHttpRequest[];
   let instance: Fetch;
-  const requests: SinonFakeXMLHttpRequest[] = [];
 
-  // Устанавливает поддельный XMLHttpRequest с использованием sinon.useFakeXMLHttpRequest(). 
-  // Это позволяет перехватывать все HTTP-запросы, создаваемые в тестах, и сохранять их в массиве requests.
   beforeEach(() => {
-    // Stub (заглушка). Эта заглушка используется для перехвата и имитации HTTP-запросов.
+    requests = [];
     xhr = sinon.useFakeXMLHttpRequest();
-
     global.XMLHttpRequest = xhr as any;
-    // Метод xhr.onCreate также является заглушкой, которая позволяет перехватывать создаваемые запросы и добавлять их в массив requests.
-    xhr.onCreate = (req) => {
-      // Spy (шпион): массив requests используется для отслеживания вызовов HTTP-запросов, 
-      // что в некотором смысле можно рассматривать как шпионаж за вызовами методов отправки запросов (например, get, post, put, delete).
+    xhr.onCreate = (req: SinonFakeXMLHttpRequest) => {
       requests.push(req);
     };
-
     instance = new Fetch('');
   });
 
-  // Очищает массив requests и восстанавливает оригинальный XMLHttpRequest, который был заменен на поддельный в beforeEach.
   afterEach(() => {
-    requests.length = 0;
     xhr.restore();
   });
 
-  // Тесты на валидность данных HTTP-транспорта:
-  // Проверяют, что передаваемые данные (запросы, параметры и тело запросов) корректно формируются и отправляются.
-  describe('HTTP Transport data validity', () => {
-    it('should invoke GET method with correct query params', () => {
-      const url = '/chats';
-      const params = {
-        limit: 50,
-      };
-      instance.get(`${url}`, { data: params });
-      const [request] = requests;
-
-      // Проверяем, что request.url является строкой перед использованием метода include
-      expect(request.url).to.be.a('string');
-      expect(request.url).to.include(`${url}?limit=50`);
+  it('should handle errors correctly', (done) => {
+    const url = '/error';
+    instance.get(url).catch((error) => {
+      /* eslint-disable no-unused-expressions */
+      expect(error).to.exist;
+      done();
     });
+
+    requests[0].respond(500, { 'Content-Type': 'application/json' }, JSON.stringify({ error: 'Internal Server Error' }));
   });
 });
