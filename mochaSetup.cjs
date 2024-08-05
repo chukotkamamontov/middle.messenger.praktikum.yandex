@@ -1,10 +1,13 @@
 const { JSDOM } = require('jsdom');
 
-const { window } = new JSDOM('<div id="app"></div>', {
-  url: 'http://localhost:3000'
+const jsdom = new JSDOM("<body></body>", {
+  url: "http://localhost/3000",
 });
 
-global.window = window;
-global.document = window.document;
-global.DocumentFragment = window.DocumentFragment;
-
+global.window = jsdom.window;
+global.document = jsdom.window.document;
+global.FormData = jsdom.window.FormData;
+global.Node = jsdom.window.Node;
+global.MouseEvent = jsdom.window.MouseEvent;
+global.history = jsdom.window.history;
+global.XMLHttpRequest = jsdom.window.XMLHttpRequest;
