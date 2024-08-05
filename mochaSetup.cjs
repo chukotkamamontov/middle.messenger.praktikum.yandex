@@ -8,6 +8,3 @@ global.window = window;
 global.document = window.document;
 global.DocumentFragment = window.DocumentFragment;
 
-require.extensions['.scss'] = function () {
-  module.exports = () => ({});
-};
