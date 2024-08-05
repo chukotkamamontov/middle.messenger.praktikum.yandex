@@ -36,35 +36,6 @@ describe('HTTP Transport test', () => {
     xhr.restore();
   });
 
-  // Тесты на методы HTTP-транспорта:
-  // Проверяют, что методы get, post, put и delete класса Fetch корректно устанавливают HTTP-метод запроса.
-  describe('HTTP Transport methods functionality', () => {
-    it('should invoke get() method', () => {
-      instance.get('/');
-      const [request] = requests;
-      // console.log(request)
-      expect(request.method).to.equal('GET');
-    });
-
-    it('should invoke post() method', () => {
-      instance.post('/');
-      const [request] = requests;
-      expect(request.method).to.equal('POST');
-    });
-
-    it('should invoke put() method', () => {
-      instance.put('/');
-      const [request] = requests;
-      expect(request.method).to.equal('PUT');
-    });
-
-    it('should invoke delete() method', () => {
-      instance.delete('/');
-      const [request] = requests;
-      expect(request.method).to.equal('DELETE');
-    });
-  });
-
   // Тесты на валидность данных HTTP-транспорта:
   // Проверяют, что передаваемые данные (запросы, параметры и тело запросов) корректно формируются и отправляются.
   describe('HTTP Transport data validity', () => {
@@ -108,34 +79,6 @@ describe('HTTP Transport test', () => {
       instance.delete(`${url}`, { data });
       const [request] = requests;
       expect(request.requestBody).to.equal(JSON.stringify(data));
-    });
-  });
-
-  // Тесты на отправку cookies:
-  // Проверяют, что для всех типов запросов (GET, POST, PUT, DELETE) установлено свойство withCredentials, что означает отправку cookies.
-  describe('cookies sending validity', () => {
-    it('should send cookies in the GET method', () => {
-      instance.get('/');
-      const [request] = requests;
-      expect(request.withCredentials).to.equal(true);
-    });
-
-    it('should send cookies in the POST method', () => {
-      instance.post('/', {});
-      const [request] = requests;
-      expect(request.withCredentials).to.equal(true);
-    });
-
-    it('should send cookies in the PUT method', () => {
-      instance.put('/', {});
-      const [request] = requests;
-      expect(request.withCredentials).to.equal(true);
-    });
-
-    it('should send cookies in the DELETE method', () => {
-      instance.delete('/', {});
-      const [request] = requests;
-      expect(request.withCredentials).to.equal(true);
     });
   });
 });

@@ -13,5 +13,8 @@
   "include": [
     "./src",
     "./global.d.ts"
-  ]
+  ],
+  "ts-node": {
+    "files": true
+  }
 }

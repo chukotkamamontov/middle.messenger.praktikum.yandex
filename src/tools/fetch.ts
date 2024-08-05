@@ -1,6 +1,6 @@
 import { queryStringify, QueryStringifyParams } from '../utils/fetchUtils';
 
-enum METHODS {
+export enum METHODS {
   DELETE = 'DELETE',
   GET = 'GET',
   POST = 'POST',
