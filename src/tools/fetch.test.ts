@@ -1,7 +1,3 @@
-// Mocha: Используется для организации тестов, с использованием таких функций, как describe, beforeEach, и afterEach.
-// Sinon: Используется для создания поддельных объектов XMLHttpRequest, чтобы тесты могли проверять HTTP-запросы, отправляемые классом Fetch, без фактической отправки этих запросов.
-// Chai: Используется для создания утверждений (assertions) в тестах, таких как expect.
-
 import { afterEach, beforeEach, describe } from 'mocha';
 import sinon, { SinonFakeXMLHttpRequest, SinonFakeXMLHttpRequestStatic } from 'sinon';
 import { expect } from 'chai';
@@ -46,6 +42,9 @@ describe('HTTP Transport test', () => {
       };
       instance.get(`${url}`, { data: params });
       const [request] = requests;
+
+      // Проверяем, что request.url является строкой перед использованием метода include
+      expect(request.url).to.be.a('string');
       expect(request.url).to.include(`${url}?limit=50`);
     });
   });
