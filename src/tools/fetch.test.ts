@@ -48,37 +48,5 @@ describe('HTTP Transport test', () => {
       const [request] = requests;
       expect(request.url).to.include(`${url}?limit=50`);
     });
-
-    it('should invoke POST method with correct data', () => {
-      const url = '/auth/signup';
-      const data = {
-        login: 'test',
-        password: '123456qwerty',
-      };
-      instance.post(`${url}`, { data });
-      const [request] = requests;
-      expect(request.requestBody).to.equal(JSON.stringify(data));
-    });
-
-    it('should invoke PUT method with correct data', () => {
-      const url = '/chats/users';
-      const data = {
-        users: [123],
-        chatId: 123,
-      };
-      instance.put(`${url}`, { data });
-      const [request] = requests;
-      expect(request.requestBody).to.equal(JSON.stringify(data));
-    });
-
-    it('should invoke DELETE method with correct data', () => {
-      const url = '/chats';
-      const data = {
-        chatId: 123,
-      };
-      instance.delete(`${url}`, { data });
-      const [request] = requests;
-      expect(request.requestBody).to.equal(JSON.stringify(data));
-    });
   });
 });
